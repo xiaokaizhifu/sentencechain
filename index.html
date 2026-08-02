@@ -317,8 +317,8 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
 .module-tip strong{color:var(--primary)}
 
 /* === Onboarding Modal === */
-.onboard-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.55);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
-.onboard-overlay.show{opacity:1}
+.onboard-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.55);z-index:9999;display:none;align-items:center;justify-content:center}
+.onboard-overlay.show{display:flex;opacity:1}
 .onboard-box{background:#fff;border-radius:16px;max-width:560px;width:90%;max-height:85vh;overflow-y:auto;padding:32px 32px 24px;box-shadow:0 20px 60px rgba(0,0,0,0.2);transform:translateY(20px);transition:transform .3s}
 .onboard-overlay.show .onboard-box{transform:translateY(0)}
 .onboard-title{font-size:22px;font-weight:700;color:var(--text);margin-bottom:4px;text-align:center}
@@ -345,7 +345,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   try {
     const client = await import('/@vite/client');
     const hmr = client.createHotContext('hmr-handler/fake.js');
-    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785680554485']);
+    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785681008914']);
   } catch {}
 })();</script><style>.buttonsCard-bTXa5j {
   padding: var(--spacer-4);
@@ -702,7 +702,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   try {
     const client = await import('/@vite/client');
     const hmr = client.createHotContext('hmr-handler/fake.js');
-    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785680554496']);
+    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785681008925']);
   } catch {}
 })();</script><style>.buttonsCard-bTXa5j {
   padding: var(--spacer-4);
@@ -2872,7 +2872,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
     </div>
     
     <div class="nav-section-label">记单词</div>
-    <div class="nav-item" data-page="vocab" onclick="navigateTo('vocab')">
+    <div class="nav-item active" data-page="vocab" onclick="navigateTo('vocab')">
       <span class="nav-icon">📖</span><span>刷单词</span>
     </div>
     <div class="nav-item" data-page="wordbook" onclick="navigateTo('wordbook')">
@@ -2906,7 +2906,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
     <div class="nav-item" data-page="stats" onclick="navigateTo('stats')">
       <span class="nav-icon">📊</span><span>学习统计</span>
     </div>
-    <div class="nav-item active" data-page="settings" onclick="navigateTo('settings')">
+    <div class="nav-item" data-page="settings" onclick="navigateTo('settings')">
       <span class="nav-icon">⚙️</span><span>设置</span>
     </div>
   </nav>
@@ -2938,24 +2938,24 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   </div>
 
   <!-- ========== 2. Vocab ========== -->
-  <div class="page" id="page-vocab">
+  <div class="page active" id="page-vocab">
     <h2 class="page-title">词汇学习</h2>
     <div class="module-tip"><span class="tip-icon">💡</span><div>单词按<strong>考频从高到低</strong>出现，高频词优先记住提分最快。点「模糊」或「不认识」的词会自动进入<strong>生词本</strong>，点「太简单」则永久跳过。可点「上一个」回退修改误操作。</div></div>
     <div class="vocab-progress">
-      <div class="progress-bar-wrap"><div class="progress-bar" id="vocabProgressBar" style="width:0%"></div></div>
-      <div class="progress-text"><span id="vocabProgressText">0 / 50</span></div>
+      <div class="progress-bar-wrap"><div class="progress-bar" id="vocabProgressBar" style="width: 9%;"></div></div>
+      <div class="progress-text"><span id="vocabProgressText">108 / 1200 · 🔄 复习 · 共5349词</span></div>
     </div>
     <div class="vocab-card-container">
       <div class="vocab-card" id="vocabCard" onclick="flipCard()">
         <div class="vocab-card-face vocab-card-front">
-          <div class="vocab-word" id="vcWord">--</div>
-          <div class="vocab-phonetic" id="vcPhonetic">--</div>
+          <div class="vocab-word" id="vcWord">take</div>
+          <div class="vocab-phonetic" id="vcPhonetic">/teik/</div>
           <button class="vocab-speak-btn" onclick="event.stopPropagation();speakWord()">🔊</button>
-          <div class="vocab-mastery" id="vcMastery"></div>
+          <div class="vocab-mastery" id="vcMastery"><div class="mastery-dot"></div><div class="mastery-dot"></div><div class="mastery-dot"></div><div class="mastery-dot"></div><div class="mastery-dot"></div></div>
         </div>
         <div class="vocab-card-face vocab-card-back">
-          <div class="vocab-trans" id="vcTrans">--</div>
-          <div class="vocab-def" id="vcDef">--</div>
+          <div class="vocab-trans" id="vcTrans">vt. 拿, 取, 抓, 带领, 获得, 就座, 接受, 吃, 吸引, 采取, 乘, 需要, 花费\nvi. 吃掉对方棋子, 抓住, 起作用, 依法获得财产\nn. 拿, 取, 收成, 奏效</div>
+          <div class="vocab-def" id="vcDef">n. the act of photographing a scene or part of a scene without interruption v. carry out v. require (time or space) v. get into one's hands, take physically</div>
           <div style="font-size:11px;color:var(--text-muted);margin-top:12px">点击卡片翻回</div>
         </div>
       </div>
@@ -2967,7 +2967,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
       <button class="vocab-btn green" onclick="markVocab('know')">认识</button>
     </div>
     <div style="text-align:center;margin-top:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-      <button class="btn-outline" style="font-size:13px;padding:6px 14px" id="vocabPrevBtn" onclick="prevVocab()">← 上一个</button>
+      <button class="btn-outline" style="font-size: 13px; padding: 6px 14px; opacity: 0.4;" id="vocabPrevBtn" onclick="prevVocab()">← 上一个</button>
       <button class="btn-outline" style="font-size:13px;padding:6px 14px;border-color:var(--success);color:var(--success)" onclick="markVocab('too-easy')">✓ 太简单了</button>
       <button class="btn-outline" id="vocabRootBtn" onclick="showVocabWordRoot()" style="font-size:13px">🔍 词根词缀</button>
     </div>
@@ -3204,7 +3204,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   </div>
 
   <!-- ========== 11. Settings ========== -->
-  <div class="page active" id="page-settings">
+  <div class="page" id="page-settings">
     <h2 class="page-title">设置</h2>
     <div class="module-tip"><span class="tip-icon">✅</span><div>API已内置配置，<strong>打开即用</strong>无需手动设置。可在此调整每日学习量和新词复习比例。</div></div>
     <div class="card">
