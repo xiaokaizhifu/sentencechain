@@ -315,7 +315,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   try {
     const client = await import('/@vite/client');
     const hmr = client.createHotContext('hmr-handler/fake.js');
-    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785664787604']);
+    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785665761505']);
   } catch {}
 })();</script><style>.buttonsCard-bTXa5j {
   padding: var(--spacer-4);
@@ -672,7 +672,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   try {
     const client = await import('/@vite/client');
     const hmr = client.createHotContext('hmr-handler/fake.js');
-    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785664787616']);
+    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785665761517']);
   } catch {}
 })();</script><style>.buttonsCard-bTXa5j {
   padding: var(--spacer-4);
@@ -3029,7 +3029,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
         <div class="trans-sentence" id="transFullSentence" style="font-size:16px;font-weight:500"></div>
       </div>
       <div id="transWordbookHint" style="display:none;margin-bottom:12px;padding:8px 12px;background:#fff3cd;border-radius:6px;font-size:13px;color:#975008">
-        以下为演示题目，点击右上方"AI出题"可使用生词本中的单词生成练习
+        生词本中单词不足3个，当前为演示题目。请先去「刷单词」将不熟的词加入生词本，再回来练习
       </div>
       <!-- Step-by-step translation area -->
       <div id="transStepArea">
@@ -4073,7 +4073,20 @@ function initTranslation(){
   updateTransModeUI();
   renderTransTabs();
   state.transIndex=0;
-  renderTransQuestion();
+  // Check if wordbook has words - if so, auto-generate exercise from wordbook
+  var wbWords=[];
+  vocab.forEach(function(v){
+    if(state['wb_added_'+v.word]&&v.mastery<5) wbWords.push(v.word);
+  });
+  if(wbWords.length>=3&&transMode==='c2e'){
+    // Auto-generate from wordbook instead of showing demo
+    renderTransQuestion(); // Show demo first while loading
+    setTimeout(function(){
+      generateNewTransExercise();
+    },300);
+  }else{
+    renderTransQuestion();
+  }
 }
 function updateTransModeUI(){
   document.getElementById('transModeC2E').classList.toggle('active',transMode==='c2e');
@@ -4302,20 +4315,27 @@ function displayAIEvalResult(data){
   document.getElementById('aiEvalResult').innerHTML=html;
 }
 function generateNewTransExercise(){
-  // Get selected words from word book
+  // Get words from word book (use checked words first, then all wordbook words)
   var words=[];
   vocab.forEach(function(v){
     if(state['wb_check_'+v.word]) words.push(v.word);
   });
+  // If no checked words, use all words in wordbook
   if(words.length<3){
-    showToast('请先在生词本勾选至少3个单词','warn');
+    words=[];
+    vocab.forEach(function(v){
+      if(state['wb_added_'+v.word]&&v.mastery<5) words.push(v.word);
+    });
+  }
+  if(words.length<3){
+    showToast('生词本中单词不足3个，请先去刷单词','warn');
     return;
   }
   // Map grammar name to ID for the API
   var grammarName=translationExercises[state.transTabIndex].grammar;
   var grammarIdMap={'定语从句':'attributive','状语从句':'adverbial','名词性从句':'noun-clause','非谓语动词':'non-finite','强调句':'complex'};
   var grammarId=grammarIdMap[grammarName]||'attributive';
-  showToast('AI正在生成新题目...','info');
+  showToast('AI正在用生词本中的单词生成题目...','info');
   fetch(api('/api/generate-translation'),{
     method:'POST',
     headers:{'Content-Type':'application/json'},
@@ -4345,7 +4365,7 @@ function generateNewTransExercise(){
       showToast('生成失败，请重试','warn');
     }
   })
-  .catch(function(){showToast('网络错误','warn');});
+  .catch(function(){showToast('网络错误，请检查API设置','warn');});
 }
 function nextTransQuestion(){
   if(transMode==='c2e'){
