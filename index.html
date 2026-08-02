@@ -315,7 +315,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   try {
     const client = await import('/@vite/client');
     const hmr = client.createHotContext('hmr-handler/fake.js');
-    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785665761505']);
+    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785666051452']);
   } catch {}
 })();</script><style>.buttonsCard-bTXa5j {
   padding: var(--spacer-4);
@@ -672,7 +672,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   try {
     const client = await import('/@vite/client');
     const hmr = client.createHotContext('hmr-handler/fake.js');
-    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785665761517']);
+    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785666051466']);
   } catch {}
 })();</script><style>.buttonsCard-bTXa5j {
   padding: var(--spacer-4);
@@ -4078,7 +4078,7 @@ function initTranslation(){
   vocab.forEach(function(v){
     if(state['wb_added_'+v.word]&&v.mastery<5) wbWords.push(v.word);
   });
-  if(wbWords.length>=3&&transMode==='c2e'){
+  if(wbWords.length>=3&&transMode==='c2e'&&API_BASE){
     // Auto-generate from wordbook instead of showing demo
     renderTransQuestion(); // Show demo first while loading
     setTimeout(function(){
@@ -4086,6 +4086,16 @@ function initTranslation(){
     },300);
   }else{
     renderTransQuestion();
+    // If wordbook has words but API not configured, show hint
+    if(wbWords.length>=3&&!API_BASE){
+      var hintEl=document.getElementById('transWordbookHint');
+      if(hintEl){
+        hintEl.style.display='block';
+        hintEl.textContent='生词本有'+wbWords.length+'个单词。请在「设置」中填写API地址后点击"AI出题"，即可用生词本单词生成练习';
+        hintEl.style.background='#e3f2fd';
+        hintEl.style.color='#1565c0';
+      }
+    }
   }
 }
 function updateTransModeUI(){
@@ -4315,6 +4325,11 @@ function displayAIEvalResult(data){
   document.getElementById('aiEvalResult').innerHTML=html;
 }
 function generateNewTransExercise(){
+  // Check if API is configured
+  if(!API_BASE){
+    showToast('请先在「设置」中填写API地址','warn');
+    return;
+  }
   // Get words from word book (use checked words first, then all wordbook words)
   var words=[];
   vocab.forEach(function(v){
