@@ -315,7 +315,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   try {
     const client = await import('/@vite/client');
     const hmr = client.createHotContext('hmr-handler/fake.js');
-    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785657683532']);
+    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785658337719']);
   } catch {}
 })();</script><style>.buttonsCard-bTXa5j {
   padding: var(--spacer-4);
@@ -672,7 +672,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   try {
     const client = await import('/@vite/client');
     const hmr = client.createHotContext('hmr-handler/fake.js');
-    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785657683548']);
+    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785658337732']);
   } catch {}
 })();</script><style>.buttonsCard-bTXa5j {
   padding: var(--spacer-4);
@@ -3816,21 +3816,12 @@ function showDemoArticle(){
 }
 function displayAIArticle(article,words){
   var html=article;
-  // highlight selected words
+  // Only highlight selected target words (avoid exponential string growth)
   words.slice(0,20).forEach(function(w){
     var regex=new RegExp('('+w+'(?:s|ed|ing|tion|ment|ly|ness|ous|ive|al|ful|less|ity|ence|ance)?)','gi');
     html=html.replace(regex,function(match){
       return '<span class="highlight" onclick="showArticleTooltip(event,\''+w+'\')">'+match+'</span>';
     });
-  });
-  // also highlight other known vocab words
-  vocab.forEach(function(v){
-    if(words.indexOf(v.word)===-1){
-      var regex=new RegExp('('+v.word+'(?:s|ed|ing|tion|ment|ly|ness|ous|ive|al|ful|less)?)','gi');
-      html=html.replace(regex,function(match){
-        return '<span class="highlight" onclick="showArticleTooltip(event,\''+v.word+'\')">'+match+'</span>';
-      });
-    }
   });
   document.getElementById('aiArticleContent').innerHTML=html;
 }
