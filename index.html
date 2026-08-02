@@ -315,7 +315,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   try {
     const client = await import('/@vite/client');
     const hmr = client.createHotContext('hmr-handler/fake.js');
-    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785666051452']);
+    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785666859988']);
   } catch {}
 })();</script><style>.buttonsCard-bTXa5j {
   padding: var(--spacer-4);
@@ -672,7 +672,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   try {
     const client = await import('/@vite/client');
     const hmr = client.createHotContext('hmr-handler/fake.js');
-    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785666051466']);
+    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785666860003']);
   } catch {}
 })();</script><style>.buttonsCard-bTXa5j {
   padding: var(--spacer-4);
@@ -2801,10 +2801,10 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
     </div>
     
     <div class="nav-section-label">用单词</div>
-    <div class="nav-item active" data-page="ai-article" onclick="navigateTo('ai-article')">
+    <div class="nav-item" data-page="ai-article" onclick="navigateTo('ai-article')">
       <span class="nav-icon">🤖</span><span>造句</span>
     </div>
-    <div class="nav-item" data-page="translation" onclick="navigateTo('translation')">
+    <div class="nav-item active" data-page="translation" onclick="navigateTo('translation')">
       <span class="nav-icon">🔄</span><span>中英互译</span>
     </div>
     <div class="nav-item" data-page="reading" onclick="navigateTo('reading')">
@@ -2938,7 +2938,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   </div>
 
   <!-- ========== 5. AI Article ========== -->
-  <div class="page active" id="page-ai-article">
+  <div class="page" id="page-ai-article">
     <h2 class="page-title">AI文章生成</h2>
     <div class="steps" id="aiSteps">
       <div class="step active" data-step="1"><div class="step-num">1</div><div class="step-label">选词</div></div>
@@ -2949,11 +2949,13 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
     </div>
 
     <!-- Step 1 -->
-    <div class="ai-step" id="aiStep1" style="display: block;">
+    <div class="ai-step" id="aiStep1">
       <div class="card">
         <h3 style="margin-bottom:8px;font-size:16px">已选单词</h3>
         <p style="font-size:13px;color:var(--text-light);margin-bottom:12px">请先到「生词本」勾选要包含在文章中的单词（最多20个）</p>
-        <div class="selected-words" id="aiSelectedWords"><span class="selected-word">acknowledge</span><span class="selected-word">abandon</span><span class="selected-word">adequate</span><span class="selected-word">ambitious</span></div>
+        <div class="selected-words" id="aiSelectedWords">
+          <span style="color:var(--text-muted);font-size:13px">暂无选中的单词，请去生词本勾选</span>
+        </div>
         <div style="margin-top:16px;text-align:right">
           <button class="btn-primary" onclick="goAIStep(2)">下一步</button>
         </div>
@@ -3007,45 +3009,45 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   </div>
 
   <!-- ========== 6. Translation ========== -->
-  <div class="page" id="page-translation">
+  <div class="page active" id="page-translation">
     <h2 class="page-title">翻译练习</h2>
     <div style="display:flex;gap:8px;margin-bottom:16px">
       <button class="tab active" id="transModeC2E" onclick="switchTransMode('c2e')">中翻英</button>
       <button class="tab" id="transModeE2C" onclick="switchTransMode('e2c')">英翻中</button>
       <button class="btn-outline" style="margin-left:auto" onclick="generateNewTransExercise()">AI出题</button>
     </div>
-    <div class="tabs" id="transTabs"></div>
+    <div class="tabs" id="transTabs"><div class="tab active" data-tab="0" onclick="switchTransTab(0)">定语从句</div><div class="tab" data-tab="1" onclick="switchTransTab(1)">名词性从句</div><div class="tab" data-tab="2" onclick="switchTransTab(2)">状语从句</div><div class="tab" data-tab="3" onclick="switchTransTab(3)">非谓语动词</div><div class="tab" data-tab="4" onclick="switchTransTab(4)">强调句</div></div>
     <div class="card" style="margin-bottom:16px">
       <div style="margin-bottom:12px">
         <span class="chip" id="transGrammarLabel" style="cursor:default">定语从句</span>
       </div>
       <div style="margin-bottom:8px;font-size:13px;color:var(--text-light)">目标单词：</div>
-      <div class="trans-target-words" id="transTargetWords"></div>
+      <div class="trans-target-words" id="transTargetWords"><span class="chip" style="cursor:default">abandon</span><span class="chip" style="cursor:default">determine</span><span class="chip" style="cursor:default">significant</span></div>
     </div>
     <div class="card">
       <!-- Full sentence display -->
       <div id="transFullSentenceArea" style="margin-bottom:16px;padding:12px 16px;background:var(--bg-secondary);border-radius:var(--radius-sm);border-left:3px solid var(--primary)">
         <div style="font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:6px">完整中文句子</div>
-        <div class="trans-sentence" id="transFullSentence" style="font-size:16px;font-weight:500"></div>
+        <div class="trans-sentence" id="transFullSentence" style="font-size:16px;font-weight:500">放弃研究的科学家最终决定从事一项重要的新项目。</div>
       </div>
-      <div id="transWordbookHint" style="display:none;margin-bottom:12px;padding:8px 12px;background:#fff3cd;border-radius:6px;font-size:13px;color:#975008">
+      <div id="transWordbookHint" style="display: block; margin-bottom: 12px; padding: 8px 12px; background: rgb(255, 243, 205); border-radius: 6px; font-size: 13px; color: rgb(151, 80, 8);">
         生词本中单词不足3个，当前为演示题目。请先去「刷单词」将不熟的词加入生词本，再回来练习
       </div>
       <!-- Step-by-step translation area -->
       <div id="transStepArea">
         <div style="margin-bottom:16px">
           <div style="font-size:13px;font-weight:600;color:var(--primary);margin-bottom:6px">第一步：翻译主干句</div>
-          <div class="trans-sentence" id="transMainSentence" style="font-size:15px"></div>
-          <textarea class="trans-input" id="transMainInput" placeholder="翻译主干句..." style="min-height:60px"></textarea>
+          <div class="trans-sentence" id="transMainSentence" style="font-size:15px">主干句：科学家最终决定从事一项重要的新项目。</div>
+          <textarea class="trans-input" id="transMainInput" placeholder="将中文主干句翻译成英文..." style="min-height:60px"></textarea>
         </div>
         <div style="margin-bottom:16px">
           <div style="font-size:13px;font-weight:600;color:var(--warning);margin-bottom:6px">第二步：翻译从句</div>
-          <div class="trans-sentence" id="transClauseSentence" style="font-size:15px"></div>
-          <textarea class="trans-input" id="transClauseInput" placeholder="翻译从句..." style="min-height:60px"></textarea>
+          <div class="trans-sentence" id="transClauseSentence" style="font-size:15px">从句：科学家放弃研究。</div>
+          <textarea class="trans-input" id="transClauseInput" placeholder="将中文从句翻译成英文..." style="min-height:60px"></textarea>
         </div>
         <div style="margin-bottom:8px">
           <div style="font-size:13px;font-weight:600;color:var(--success);margin-bottom:6px">第三步：合并完整翻译</div>
-          <textarea class="trans-input" id="transInput" placeholder="将主干和从句合并为完整翻译..." style="min-height:60px"></textarea>
+          <textarea class="trans-input" id="transInput" placeholder="将主干和从句合并为完整英文翻译..." style="min-height:60px"></textarea>
         </div>
       </div>
       <div class="trans-btns">
@@ -3056,9 +3058,9 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
       </div>
       <div class="trans-answer" id="transAnswer">
         <h4>参考答案</h4>
-        <div id="transAnswerMain" style="font-size:13px;color:var(--primary);margin-bottom:6px"></div>
-        <div id="transAnswerClause" style="font-size:13px;color:var(--warning);margin-bottom:6px"></div>
-        <p id="transAnswerText"></p>
+        <div id="transAnswerMain" style="font-size:13px;color:var(--primary);margin-bottom:6px">主干：The scientist ultimately determined to pursue a significant new project.</div>
+        <div id="transAnswerClause" style="font-size:13px;color:var(--warning);margin-bottom:6px">从句：who abandoned the research</div>
+        <p id="transAnswerText">The scientist <span class="key-struct">who abandoned the research</span> ultimately determined to pursue a significant new project.<br><br><span style="font-size:12px;color:var(--text-light)">关键结构：who abandoned the research (关系代词who引导定语从句，修饰scientist)</span></p>
       </div>
       <div id="aiEvalResult"></div>
     </div>
