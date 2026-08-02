@@ -294,12 +294,28 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
 .toast.info{border-left:4px solid var(--primary)}
 .nav-section-label{padding:14px 20px 4px;font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px}
 .nav-section-label:first-child{padding-top:0}
+
+/* ===== Modal ===== */
+.exam-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1500;align-items:center;justify-content:center;padding:20px}
+.exam-modal.show{display:flex}
+.exam-modal-box{background:var(--bg-card);border-radius:var(--radius);max-width:680px;width:100%;max-height:80vh;display:flex;flex-direction:column;box-shadow:var(--shadow-lg)}
+.exam-modal-header{display:flex;align-items:center;gap:8px;padding:16px 20px;border-bottom:1px solid var(--border)}
+.exam-modal-title{font-size:16px;font-weight:700;flex:1}
+.exam-modal-close{cursor:pointer;font-size:20px;color:var(--text-muted);background:none;border:none;padding:4px 8px}
+.exam-modal-close:hover{color:var(--danger)}
+.exam-modal-body{padding:16px 20px;overflow-y:auto;flex:1}
+.exam-sent-item{background:var(--bg-secondary);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:10px;border-left:3px solid var(--primary)}
+.exam-sent-meta{display:flex;align-items:center;gap:6px;margin-bottom:6px}
+.exam-sent-text{font-size:14px;line-height:1.7;color:var(--text)}
+.exam-sent-text .hl{background:var(--warning-bg);color:var(--warning);font-weight:600;padding:1px 3px;border-radius:3px}
+.wb-exam-btn{font-size:11px;padding:2px 8px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg-card);color:var(--primary);cursor:pointer;white-space:nowrap}
+.wb-exam-btn:hover{background:var(--primary);color:#fff}
 </style>
 <style>.trae-browser-inspect-overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:999997;pointer-events:auto;background:rgba(0,0,0,0)}.trae-browser-inspect-highlight-box{position:absolute;top:0;left:0;z-index:999998;display:none}.trae-browser-inspect-highlight-tag{position:absolute;left:0px;top:0px;height:18px;padding:0 6px;box-sizing:border-box;border-radius:4px;background-color:var(--vscode-icube-colorSuccessHover, "#2FB287");color:var(--vscode-icube-colorSnow, "#fff");font-size:12px;font-weight:400;display:none;align-items:center;z-index:999999}.trae-browser-inspect-highlight-box-show{display:flex}.trae-browser-inspect-select-button.trae-browser-inspect-highlight-box-show{display:flex !important}.trae-browser-inspect-select-button{position:absolute;top:0;left:0;background-color:var(--vscode-icube--bg-bg-base-secondary, "#222427");color:var(--vscode-icube--text-text-default-active, "#F5F9FE");font-size:11px;font-weight:500;border:1px solid var(--vscode-icube--border-neutral-l1, "#E0E2F217");border-radius:6px;padding:0 8px;height:32px;display:none;align-items:center;cursor:pointer;z-index:999999;gap:4px}.trae-browser-inspect-select-button svg,.trae-browser-inspect-select-button span{z-index:1}.trae-browser-inspect-select-highlight-box{background:rgba(0,0,0,0) !important}.trae-browser-inspect-select-highlight-box .trae-browser-inspect-highlight-tag{background-color:var(--vscode-icube--status-success-active, "#1E8B56")}.trae-browser-inspect-comment-card-container{position:fixed;top:0;left:0;z-index:9999999;pointer-events:auto}.trae-browser-inspect-comment-card-container .trae-browser-inspect-comment-card{display:flex;padding-top:0px !important;align-items:center;z-index:9999999 !important;background-color:var(--vscode-icube--bg-bg-menu)}*[contenteditable]{outline:none}.trae-browser-inspect-click-effect{position:fixed;width:40px;height:40px;margin-left:-20px;margin-top:-20px;border-radius:50%;background-color:var(--vscode-icube-colorSuccessHover, #2FB287);pointer-events:none;animation:trae-browser-inspect-ripple 500ms ease-out forwards;z-index:999999}@keyframes trae-browser-inspect-ripple{0%{transform:scale(0.3);opacity:.8}100%{transform:scale(2);opacity:0}}.trae-browser-inspect-ref-box{position:absolute;border:2px solid var(--vscode-icube-colorSuccessHover, "#2FB287");pointer-events:none;z-index:999998;animation:trae-browser-inspect-fadeInOut 2s ease-in-out forwards}.trae-browser-inspect-ref-label{position:absolute;top:-14px;left:0;height:14px;padding:0 4px;box-sizing:border-box;border-radius:2px;background-color:var(--vscode-icube-colorSuccessHover, "#2FB287");color:var(--vscode-icube-colorSnow, "#fff");font-size:9px;font-weight:500;display:flex;align-items:center;white-space:nowrap;z-index:999999}@keyframes trae-browser-inspect-fadeInOut{0%{opacity:0}10%{opacity:1}90%{opacity:1}100%{opacity:0}}.trae-browser-inspect-input-highlight{position:absolute;border:2px solid var(--vscode-icube-colorSuccessHover, "#2FB287");border-radius:4px;pointer-events:none;z-index:999998;box-shadow:0 0 8px var(--vscode-icube-colorSuccessHover, "#2FB287");animation:trae-browser-inspect-input-pulse 600ms ease-out forwards}@keyframes trae-browser-inspect-input-pulse{0%{opacity:0;box-shadow:0 0 0 var(--vscode-icube-colorSuccessHover, "#2FB287")}30%{opacity:1;box-shadow:0 0 12px var(--vscode-icube-colorSuccessHover, "#2FB287")}100%{opacity:0;box-shadow:0 0 0 var(--vscode-icube-colorSuccessHover, "#2FB287")}}.trae-browser-inspect-virtual-cursor{position:fixed;width:20px;height:20px;pointer-events:none;z-index:9999999;opacity:0;transition:opacity .2s ease}.trae-browser-inspect-virtual-cursor.trae-browser-inspect-cursor-visible{opacity:1}.trae-browser-inspect-virtual-cursor.trae-browser-inspect-cursor-idle{animation:trae-browser-inspect-cursor-breathe 2s ease-in-out infinite}.trae-browser-inspect-virtual-cursor svg{width:20px;height:20px;filter:drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))}@keyframes trae-browser-inspect-cursor-breathe{0%,100%{opacity:.7}50%{opacity:1}}.trae-browser-inspect-scroll-indicator{position:fixed;display:flex;align-items:center;justify-content:center;gap:6px;padding:8px 16px;border-radius:8px;background-color:rgba(0,0,0,.7);color:#fff;font-size:13px;font-weight:500;pointer-events:none;z-index:999999;animation:trae-browser-inspect-indicator-fade 800ms ease-out forwards;backdrop-filter:blur(4px)}.trae-browser-inspect-scroll-indicator svg{width:16px;height:16px;fill:#fff}.trae-browser-inspect-scroll-indicator.trae-scroll-up{top:12px;left:50%;transform:translateX(-50%)}.trae-browser-inspect-scroll-indicator.trae-scroll-down{bottom:12px;left:50%;transform:translateX(-50%)}.trae-browser-inspect-scroll-indicator.trae-scroll-left{left:12px;top:50%;transform:translateY(-50%)}.trae-browser-inspect-scroll-indicator.trae-scroll-right{right:12px;top:50%;transform:translateY(-50%)}@keyframes trae-browser-inspect-indicator-fade{0%{opacity:0;transform:translateX(-50%) scale(0.9)}15%{opacity:1;transform:translateX(-50%) scale(1)}85%{opacity:1}100%{opacity:0}}.trae-browser-inspect-scroll-indicator.trae-scroll-left,.trae-browser-inspect-scroll-indicator.trae-scroll-right{animation-name:trae-browser-inspect-indicator-fade-y}@keyframes trae-browser-inspect-indicator-fade-y{0%{opacity:0;transform:translateY(-50%) scale(0.9)}15%{opacity:1;transform:translateY(-50%) scale(1)}85%{opacity:1}100%{opacity:0}}.trae-browser-inspect-key-badge{position:fixed;bottom:60px;left:50%;transform:translateX(-50%);padding:8px 20px;border-radius:8px;background-color:rgba(0,0,0,.8);color:#fff;font-size:18px;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,monospace;pointer-events:none;z-index:999999;animation:trae-browser-inspect-key-pop 500ms ease-out forwards;backdrop-filter:blur(4px);border:1px solid hsla(0,0%,100%,.15);box-shadow:0 4px 12px rgba(0,0,0,.3);letter-spacing:1px}@keyframes trae-browser-inspect-key-pop{0%{opacity:0;transform:translateX(-50%) translateY(10px) scale(0.9)}20%{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}80%{opacity:1}100%{opacity:0;transform:translateX(-50%) translateY(-10px)}}.trae-browser-inspect-step-badge{position:fixed;top:12px;left:12px;padding:6px 12px;border-radius:6px;background-color:var(--vscode-icube-colorSuccessHover, #2FB287);color:#fff;font-size:12px;font-weight:600;pointer-events:none;z-index:999999;animation:trae-browser-inspect-step-slide 600ms ease-out forwards;box-shadow:0 2px 8px rgba(47,178,135,.3);max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.trae-browser-inspect-step-badge.trae-step-old{opacity:.4;transform:translateY(0)}@keyframes trae-browser-inspect-step-slide{0%{opacity:0;transform:translateX(-20px)}20%{opacity:1;transform:translateX(0)}100%{opacity:1;transform:translateX(0)}}.trae-browser-inspect-drag-trail{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999998}.trae-browser-inspect-drag-trail svg{width:100%;height:100%}.trae-browser-inspect-drag-trail .trae-drag-path{fill:none;stroke:var(--vscode-icube-colorSuccessHover, #2FB287);stroke-width:2;stroke-dasharray:8 4;opacity:.6;animation:trae-browser-inspect-dash 600ms linear forwards}.trae-browser-inspect-drag-trail .trae-drag-dot{fill:var(--vscode-icube-colorSuccessHover, #2FB287);filter:drop-shadow(0 0 4px rgba(47, 178, 135, 0.6))}.trae-browser-inspect-drag-trail .trae-drag-endpoint{fill:none;stroke:var(--vscode-icube-colorSuccessHover, #2FB287);stroke-width:2;opacity:.5}@keyframes trae-browser-inspect-dash{0%{stroke-dashoffset:200}100%{stroke-dashoffset:0}}.trae-browser-inspect-drag-trail.trae-drag-fade{animation:trae-browser-inspect-trail-fade 400ms ease-out forwards}@keyframes trae-browser-inspect-trail-fade{0%{opacity:1}100%{opacity:0}}</style><script type="module">(async () => {
   try {
     const client = await import('/@vite/client');
     const hmr = client.createHotContext('hmr-handler/fake.js');
-    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785593195522']);
+    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785654589492']);
   } catch {}
 })();</script><style>.buttonsCard-bTXa5j {
   padding: var(--spacer-4);
@@ -656,7 +672,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   try {
     const client = await import('/@vite/client');
     const hmr = client.createHotContext('hmr-handler/fake.js');
-    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785593195533']);
+    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785654589506']);
   } catch {}
 })();</script><style>.buttonsCard-bTXa5j {
   padding: var(--spacer-4);
@@ -2750,6 +2766,18 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
 <!-- Tooltip -->
 <div class="tooltip" id="tooltip" style="display:none"></div>
 
+<!-- Exam Sentences Modal -->
+<div class="exam-modal" id="examModal" onclick="if(event.target===this)closeExamModal()">
+  <div class="exam-modal-box">
+    <div class="exam-modal-header">
+      <span style="font-size:18px">📚</span>
+      <span class="exam-modal-title" id="examModalTitle">真题例句</span>
+      <button class="exam-modal-close" onclick="closeExamModal()">✕</button>
+    </div>
+    <div class="exam-modal-body" id="examModalBody"></div>
+  </div>
+</div>
+
 <!-- Menu Toggle (mobile) -->
 <button class="menu-toggle" id="menuToggle" onclick="toggleSidebar()">☰</button>
 
@@ -2773,10 +2801,10 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
     </div>
     
     <div class="nav-section-label">用单词</div>
-    <div class="nav-item active" data-page="ai-article" onclick="navigateTo('ai-article')">
+    <div class="nav-item" data-page="ai-article" onclick="navigateTo('ai-article')">
       <span class="nav-icon">🤖</span><span>造句</span>
     </div>
-    <div class="nav-item" data-page="translation" onclick="navigateTo('translation')">
+    <div class="nav-item active" data-page="translation" onclick="navigateTo('translation')">
       <span class="nav-icon">🔄</span><span>中英互译</span>
     </div>
     <div class="nav-item" data-page="reading" onclick="navigateTo('reading')">
@@ -2833,22 +2861,24 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   <div class="page" id="page-vocab">
     <h2 class="page-title">词汇学习</h2>
     <div class="vocab-progress">
-      <div class="progress-bar-wrap"><div class="progress-bar" id="vocabProgressBar" style="width:0%"></div></div>
-      <div class="progress-text"><span id="vocabProgressText">0 / 50</span></div>
+      <div class="progress-bar-wrap"><div class="progress-bar" id="vocabProgressBar" style="width: 100%;"></div></div>
+      <div class="progress-text"><span id="vocabProgressText">今日已完成!</span></div>
     </div>
     <div class="vocab-card-container">
       <div class="vocab-card" id="vocabCard" onclick="flipCard()">
         <div class="vocab-card-face vocab-card-front">
-          <div class="vocab-word" id="vcWord">--</div>
-          <div class="vocab-phonetic" id="vcPhonetic">--</div>
+          <div class="vocab-word" id="vcWord">🎉</div>
+          <div class="vocab-phonetic" id="vcPhonetic">今天刷了100个词，明天继续!</div>
           <button class="vocab-speak-btn" onclick="event.stopPropagation();speakWord()">🔊</button>
-          <div class="vocab-mastery" id="vcMastery"></div>
+          <div class="vocab-mastery" id="vcMastery"><div class="mastery-dot"></div><div class="mastery-dot"></div><div class="mastery-dot"></div><div class="mastery-dot"></div><div class="mastery-dot"></div></div>
         </div>
         <div class="vocab-card-face vocab-card-back">
-          <div class="vocab-trans" id="vcTrans">--</div>
-          <div class="vocab-def" id="vcDef">--</div>
+          <div class="vocab-trans" id="vcTrans"></div>
+          <div class="vocab-def" id="vcDef"></div>
+          <div style="font-size:11px;color:var(--text-muted);margin-top:12px">点击卡片翻回</div>
         </div>
       </div>
+      <div style="text-align:center;font-size:12px;color:var(--text-muted);margin-top:8px">点击卡片查看释义</div>
     </div>
     <div class="vocab-btns">
       <button class="vocab-btn red" onclick="markVocab('dont-know')">不认识</button>
@@ -2889,10 +2919,10 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
       <input type="text" id="wbSearchInput" placeholder="搜索单词..." oninput="filterWordbook()">
     </div>
     <div class="tabs" id="wbTabs">
-      <div class="tab active" data-filter="all" onclick="filterWordbookTab('all')">全部</div>
+      <div class="tab" data-filter="all" onclick="filterWordbookTab('all')">全部</div>
       <div class="tab" data-filter="new" onclick="filterWordbookTab('new')">生词</div>
       <div class="tab" data-filter="learning" onclick="filterWordbookTab('learning')">已学过</div>
-      <div class="tab" data-filter="mastered" onclick="filterWordbookTab('mastered')">已掌握</div>
+      <div class="tab active" data-filter="mastered" onclick="filterWordbookTab('mastered')">已掌握</div>
     </div>
     <div style="margin-bottom:12px;display:flex;gap:8px;flex-wrap:wrap">
       <button class="btn-outline" style="font-size:13px" onclick="selectAllWordbook()">全选</button>
@@ -2900,13 +2930,13 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
       <button class="btn-primary" style="font-size:13px" onclick="smartGroupWords()">🔍 AI智能分组</button>
     </div>
     <div class="card" style="padding:0;overflow:hidden">
-      <ul class="wb-list" id="wbList"></ul>
+      <ul class="wb-list" id="wbList"><div class="empty-state"><div class="empty-icon">📭</div><p>暂无符合条件的单词</p></div></ul>
     </div>
     <div id="smartGroupResults"></div>
   </div>
 
   <!-- ========== 5. AI Article ========== -->
-  <div class="page active" id="page-ai-article">
+  <div class="page" id="page-ai-article">
     <h2 class="page-title">AI文章生成</h2>
     <div class="steps" id="aiSteps">
       <div class="step done" data-step="1"><div class="step-num">1</div><div class="step-label">选词</div></div>
@@ -2951,41 +2981,45 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
           <span style="font-size:12px;color:var(--text-muted);margin-left:auto">点击高亮词查看释义</span>
         </div>
         <div class="article-content" id="aiArticleContent"><div style="text-align:center;padding:30px 20px"><p style="color:#e74c3c;font-size:15px;margin-bottom:8px">AI功能需要连接服务器</p><p style="color:var(--text-muted);font-size:13px;margin-bottom:16px">当前为本地预览模式，AI生成功能暂不可用。<br>部署到 Cloudflare Workers 后即可正常使用。</p><div style="display:flex;gap:8px;justify-content:center"><button class="btn-primary" onclick="goAIStep(3)">重试</button><button class="btn-outline" onclick="showDemoArticle()">查看示例文章</button></div></div></div>
-        <div style="margin-top:16px;display:flex;justify-content:space-between">
+        <div style="margin-top:16px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px">
           <button class="btn-outline" onclick="goAIStep(2)">重新选择</button>
-          <button class="btn-primary" onclick="goAIStep(3)">换一篇</button>
+          <div style="display:flex;gap:8px">
+            <button class="btn-outline" onclick="exportArticlePDF()">📄 导出PDF</button>
+            <button class="btn-primary" onclick="goAIStep(3)">换一篇</button>
+          </div>
         </div>
       </div>
     </div>
   </div>
 
   <!-- ========== 6. Translation ========== -->
-  <div class="page" id="page-translation">
+  <div class="page active" id="page-translation">
     <h2 class="page-title">翻译练习</h2>
     <div style="display:flex;gap:8px;margin-bottom:16px">
       <button class="tab active" id="transModeC2E" onclick="switchTransMode('c2e')">中翻英</button>
       <button class="tab" id="transModeE2C" onclick="switchTransMode('e2c')">英翻中</button>
       <button class="btn-outline" style="margin-left:auto" onclick="generateNewTransExercise()">AI出题</button>
     </div>
-    <div class="tabs" id="transTabs"></div>
+    <div class="tabs" id="transTabs"><div class="tab active" data-tab="0" onclick="switchTransTab(0)">定语从句</div><div class="tab" data-tab="1" onclick="switchTransTab(1)">名词性从句</div><div class="tab" data-tab="2" onclick="switchTransTab(2)">状语从句</div><div class="tab" data-tab="3" onclick="switchTransTab(3)">非谓语动词</div><div class="tab" data-tab="4" onclick="switchTransTab(4)">强调句</div></div>
     <div class="card" style="margin-bottom:16px">
       <div style="margin-bottom:12px">
         <span class="chip" id="transGrammarLabel" style="cursor:default">定语从句</span>
       </div>
       <div style="margin-bottom:8px;font-size:13px;color:var(--text-light)">目标单词：</div>
-      <div class="trans-target-words" id="transTargetWords"></div>
+      <div class="trans-target-words" id="transTargetWords"><span class="chip" style="cursor:default">abandon</span><span class="chip" style="cursor:default">determine</span><span class="chip" style="cursor:default">significant</span></div>
     </div>
     <div class="card">
-      <div class="trans-sentence" id="transSentence"></div>
-      <textarea class="trans-input" id="transInput" placeholder="在此输入翻译..."></textarea>
+      <div class="trans-sentence" id="transSentence">那个放弃研究的科学家最终决定从事一项重要的新项目。</div>
+      <textarea class="trans-input" id="transInput" placeholder="在此输入英文翻译..."></textarea>
       <div class="trans-btns">
         <button class="btn-outline" onclick="showTransAnswer()">查看答案</button>
         <button class="trans-eval-btn" id="aiEvalBtn" onclick="aiEvaluateTranslation()">AI批改</button>
+        <button class="btn-outline" onclick="exportTranslationPDF()">📄 导出PDF</button>
         <button class="btn-primary" onclick="nextTransQuestion()">下一题</button>
       </div>
       <div class="trans-answer" id="transAnswer">
         <h4>参考答案</h4>
-        <p id="transAnswerText"></p>
+        <p id="transAnswerText">The scientist <span class="key-struct">who abandoned the research</span> ultimately determined to pursue a significant new project.<br><br><span style="font-size:12px;color:var(--text-light)">关键结构：who abandoned the research (关系代词who引导定语从句)</span></p>
       </div>
       <div id="aiEvalResult"></div>
     </div>
@@ -3390,10 +3424,40 @@ function flipCard(){
 }
 function speakWord(){
   if(!currentVocabCard) return;
-  var u=new SpeechSynthesisUtterance(currentVocabCard.word);
-  u.lang='en-US';u.rate=0.85;
-  speechSynthesis.cancel();
-  speechSynthesis.speak(u);
+  speakText(currentVocabCard.word);
+}
+function speakText(text){
+  // Method 1: Try Web Speech API first
+  if('speechSynthesis' in window && window.speechSynthesis){
+    try{
+      var u=new SpeechSynthesisUtterance(text);
+      u.lang='en-US';u.rate=0.85;
+      u.onerror=function(){
+        // Fallback to audio method on error
+        playAudioFallback(text);
+      };
+      speechSynthesis.cancel();
+      speechSynthesis.speak(u);
+      return;
+    }catch(e){
+      // fall through to audio method
+    }
+  }
+  // Method 2: Fallback - use online dictionary audio
+  playAudioFallback(text);
+}
+function playAudioFallback(word){
+  // Use Youdao Dictionary TTS (works over HTTPS)
+  var audio=new Audio('https://dict.youdao.com/dictvoice?audio='+encodeURIComponent(word)+'&type=2');
+  audio.onerror=function(){
+    // If Youdao fails too, try Google Translate TTS
+    var audio2=new Audio('https://translate.google.com/translate_tts?ie=UTF-8&q='+encodeURIComponent(word)+'&tl=en&client=tw-ob');
+    audio2.play().catch(function(){});
+  };
+  audio.play().catch(function(){
+    // Autoplay blocked - try with user interaction hint
+    showToast('点击发音按钮再次尝试','info');
+  });
 }
 function markVocab(level){
   if(!currentVocabCard) return;
@@ -3621,6 +3685,7 @@ function renderWordbook(){
     html+='<span class="wb-trans">'+v.translation+'</span>';
     html+='<div class="wb-mastery">'+dots+'</div>';
     html+='<span class="wb-speak" onclick="speakVocabWord(\''+v.word+'\')">🔊</span>';
+    html+='<button class="wb-exam-btn" onclick="showExamSentences(\''+v.word+'\')">真题例句</button>';
     html+='</li>';
   });
   if(!html) html='<div class="empty-state"><div class="empty-icon">📭</div><p>暂无符合条件的单词</p></div>';
@@ -3642,10 +3707,7 @@ function toggleWBCheck(word,checked){
   saveState();
 }
 function speakVocabWord(word){
-  var u=new SpeechSynthesisUtterance(word);
-  u.lang='en-US';u.rate=0.85;
-  speechSynthesis.cancel();
-  speechSynthesis.speak(u);
+  speakText(word);
 }
 
 /* ========================================
@@ -4558,7 +4620,7 @@ function smartGroupWords(){
     if(state['wb_check_'+v.word]) words.push(v.word);
   });
   if(words.length<3){
-    showToast('请在生词本勾选至少3个单词进行分组','warn');
+    showToast('请先勾选至少3个单词（点全选按钮可快速选词）','warn');
     return;
   }
   
@@ -4571,7 +4633,8 @@ function smartGroupWords(){
     resultsDiv=div;
   }
   
-  resultsDiv.innerHTML='<div class="ai-loading"><div class="ai-loading-spinner"></div><p>AI 正在按词根/相似度分组...</p></div>';
+  resultsDiv.style.display='block';
+  resultsDiv.innerHTML='<div class="card" style="text-align:center;padding:30px"><div class="ai-loading-spinner" style="margin:0 auto 12px"></div><p>AI 正在按词根/相似度分组 '+words.length+' 个单词...</p></div>';
   resultsDiv.scrollIntoView({behavior:'smooth'});
   
   // Call the dedicated word-group API
@@ -4594,12 +4657,24 @@ function smartGroupWords(){
 }
 
 function selectAllWordbook(){
-  vocab.forEach(function(v){
+  // Only select words currently visible in the filtered list
+  var filter=state.wbFilter;
+  var search=state.wbSearch.toLowerCase();
+  var list=vocab.filter(function(v){
+    if(search&&v.word.toLowerCase().indexOf(search)===-1&&v.translation.indexOf(search)===-1) return false;
+    if(filter==='new') return v.mastery<=2;
+    if(filter==='learning') return v.mastery===3;
+    if(filter==='mastered') return v.mastery>=4;
+    return true;
+  });
+  list.forEach(function(v){
     state['wb_check_'+v.word]=true;
   });
   saveState();
   renderWordbook();
-  showToast('已全选 '+vocab.filter(function(v){return v.mastery<5}).length+' 个单词','success');
+  // Also update checkboxes in DOM directly for instant feedback
+  document.querySelectorAll('#wbList input[type="checkbox"]').forEach(function(cb){cb.checked=true;});
+  showToast('已全选 '+list.length+' 个单词','success');
 }
 
 function clearAllWordbook(){
@@ -4608,6 +4683,8 @@ function clearAllWordbook(){
   });
   saveState();
   renderWordbook();
+  // Also update checkboxes in DOM directly for instant feedback
+  document.querySelectorAll('#wbList input[type="checkbox"]').forEach(function(cb){cb.checked=false;});
   showToast('已取消全选','success');
 }
 
@@ -4677,6 +4754,189 @@ function useGroupForArticle(groupIdx){
   saveState();
   navigateTo('ai-article');
   showToast('已选'+words.length+'个词，即将生成文章','success');
+}
+
+/* ========================================
+   EXAM SENTENCES MODAL
+   ======================================== */
+function showExamSentences(word){
+  var w=word.toLowerCase();
+  document.getElementById('examModalTitle').textContent='真题例句：'+word;
+  document.getElementById('examModalBody').innerHTML='<div class="ai-loading"><div class="ai-loading-spinner"></div><p>在真题中搜索 "'+word+'"...</p></div>';
+  document.getElementById('examModal').classList.add('show');
+
+  if(!allPassagesLoaded){
+    loadPassages(function(){showExamSentences(word);});
+    return;
+  }
+
+  // Search for sentences containing the word
+  var matches=[];
+  passages.forEach(function(p,i){
+    var text=p.text;
+    var lower=text.toLowerCase();
+    var idx=0;
+    while(true){
+      var pos=lower.indexOf(w,idx);
+      if(pos===-1) break;
+      // Extract the full sentence containing the word
+      var sentStart=pos;
+      while(sentStart>0 && '.!?;'.indexOf(text[sentStart-1])===-1) sentStart--;
+      var sentEnd=pos+w.length;
+      while(sentEnd<text.length && '.!?;'.indexOf(text[sentEnd])===-1) sentEnd++;
+      // Include the punctuation
+      if(sentEnd<text.length) sentEnd++;
+      var sentence=text.substring(sentStart,sentEnd).trim();
+      // Avoid duplicates
+      var isDup=matches.some(function(m){return m.sentence===sentence;});
+      if(!isDup){
+        // Highlight the word in the sentence
+        var highlighted=sentence.replace(new RegExp('('+word+')','gi'),'<span class="hl">$1</span>');
+        matches.push({year:p.year,paper:p.paper,sentence:highlighted,rawSentence:sentence});
+      }
+      idx=pos+w.length;
+    }
+  });
+
+  if(matches.length===0){
+    document.getElementById('examModalBody').innerHTML='<p style="text-align:center;padding:30px 0;color:var(--text-muted)">在真题中未找到 "'+word+'" 的出现记录</p>';
+    return;
+  }
+
+  // Show word definition at top
+  var v=vocab.find(function(vv){return vv.word.toLowerCase()===w;});
+  var html='';
+  if(v){
+    html+='<div style="background:var(--bg-secondary);padding:10px 14px;border-radius:var(--radius-sm);margin-bottom:14px">';
+    html+='<span style="font-weight:600">'+v.word+'</span> ';
+    html+='<span style="color:var(--text-muted);font-size:13px">'+v.phonetic+'</span><br>';
+    html+='<span style="color:var(--text-light)">'+v.translation+'</span>';
+    html+='</div>';
+  }
+  html+='<p style="color:var(--text-muted);font-size:13px;margin-bottom:12px">共找到 '+matches.length+' 个真题例句</p>';
+
+  // Show up to 20 matches
+  var shown=matches.slice(0,20);
+  shown.forEach(function(m,i){
+    html+='<div class="exam-sent-item">';
+    html+='<div class="exam-sent-meta">';
+    html+='<span class="chip" style="cursor:default">'+m.year+'</span>';
+    html+='<span class="chip" style="cursor:default">'+m.paper+'</span>';
+    html+='</div>';
+    html+='<div class="exam-sent-text">'+m.sentence+'</div>';
+    html+='</div>';
+  });
+
+  if(matches.length>20){
+    html+='<p style="text-align:center;color:var(--text-muted);font-size:13px;padding:10px 0">仅显示前20条，共'+matches.length+'条结果</p>';
+  }
+
+  document.getElementById('examModalBody').innerHTML=html;
+}
+
+function closeExamModal(){
+  document.getElementById('examModal').classList.remove('show');
+}
+
+/* ========================================
+   PDF EXPORT
+   ======================================== */
+function exportArticlePDF(){
+  var content=document.getElementById('aiArticleContent');
+  if(!content || !content.innerHTML.trim()){
+    showToast('请先生成文章再导出','warn');
+    return;
+  }
+  var words=[];
+  vocab.forEach(function(v){
+    if(state['wb_check_'+v.word]) words.push(v.word);
+  });
+  var title='句链-至简高中英语 · AI文章';
+  var grammarName=getGrammarName(state.aiGrammarType);
+  var html='<!DOCTYPE html><html><head><meta charset="utf-8"><title>'+title+'</title>';
+  html+='<style>';
+  html+='body{font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif;max-width:750px;margin:0 auto;padding:40px;color:#333;line-height:1.8}';
+  html+='h1{font-size:20px;text-align:center;margin-bottom:6px}';
+  html+='.meta{text-align:center;color:#888;font-size:13px;margin-bottom:24px}';
+  html+='.article{font-size:16px;line-height:2;text-indent:2em}';
+  html+='.highlight{background:#fff3cd;color:#856404;font-weight:600;padding:1px 4px;border-radius:3px}';
+  html+='.word-list{margin-top:24px;padding:14px;background:#f8f9fa;border-radius:8px}';
+  html+='.word-list strong{font-size:14px}.word-list span{display:inline-block;margin:2px 6px;font-size:13px;color:#555}';
+  html+='@media print{body{padding:20px}.no-print{display:none}}';
+  html+='</style></head><body>';
+  html+='<h1>句链-至简高中英语</h1>';
+  html+='<div class="meta">AI生成文章 · 语法点：'+grammarName+' · '+new Date().toLocaleDateString('zh-CN')+'</div>';
+  // Strip onclick handlers and tooltips for clean print
+  var cleanContent=content.innerHTML.replace(/onclick="[^"]*"/g,'').replace(/class="highlight"/g,'class="highlight"');
+  html+='<div class="article">'+cleanContent+'</div>';
+  if(words.length>0){
+    html+='<div class="word-list"><strong>本篇目标单词：</strong><br>';
+    html+=words.slice(0,20).map(function(w){return '<span>'+w+'</span>';}).join('');
+    html+='</div>';
+  }
+  html+='<div class="no-print" style="text-align:center;margin-top:30px"><button onclick="window.print()" style="padding:10px 30px;font-size:14px;background:#4f46e5;color:#fff;border:none;border-radius:6px;cursor:pointer">打印 / 保存为PDF</button></div>';
+  html+='</body></html>';
+
+  var w=window.open('','_blank');
+  w.document.write(html);
+  w.document.close();
+  setTimeout(function(){w.print();},500);
+}
+
+function exportTranslationPDF(){
+  var sentence=document.getElementById('transSentence');
+  var answer=document.getElementById('transAnswerText');
+  var input=document.getElementById('transInput');
+  var evalResult=document.getElementById('aiEvalResult');
+  var grammarLabel=document.getElementById('transGrammarLabel');
+
+  if(!sentence || !sentence.textContent.trim()){
+    showToast('请先加载题目再导出','warn');
+    return;
+  }
+
+  var title='句链-至简高中英语 · 翻译练习';
+  var html='<!DOCTYPE html><html><head><meta charset="utf-8"><title>'+title+'</title>';
+  html+='<style>';
+  html+='body{font-family:"Noto Sans CJK SC","Microsoft YaHei",sans-serif;max-width:750px;margin:0 auto;padding:40px;color:#333;line-height:1.8}';
+  html+='h1{font-size:20px;text-align:center;margin-bottom:6px}';
+  html+='.meta{text-align:center;color:#888;font-size:13px;margin-bottom:24px}';
+  html+='.section{margin-bottom:20px}.section-title{font-weight:700;font-size:14px;color:#666;margin-bottom:6px}';
+  html+='.sentence{font-size:17px;padding:14px;background:#f8f9fa;border-radius:8px;line-height:1.8}';
+  html+='.user-input{font-size:15px;padding:14px;background:#e8f5e9;border-radius:8px;min-height:30px;white-space:pre-wrap}';
+  html+='.answer{font-size:15px;padding:14px;background:#fff3cd;border-radius:8px;line-height:1.8}';
+  html+='.eval{font-size:14px;padding:14px;background:#e3f2fd;border-radius:8px;line-height:1.7}';
+  html+='.key-struct{color:#e74c3c;font-weight:600}';
+  html+='@media print{body{padding:20px}.no-print{display:none}}';
+  html+='</style></head><body>';
+  html+='<h1>句链-至简高中英语</h1>';
+  html+='<div class="meta">翻译练习 · '+(transMode==='c2e'?'中翻英':'英翻中')+' · '+(grammarLabel?grammarLabel.textContent:'')+' · '+new Date().toLocaleDateString('zh-CN')+'</div>';
+
+  // Question
+  html+='<div class="section"><div class="section-title">题目</div><div class="sentence">'+(sentence.innerHTML||sentence.textContent)+'</div></div>';
+
+  // User answer
+  if(input && input.value.trim()){
+    html+='<div class="section"><div class="section-title">我的翻译</div><div class="user-input">'+input.value+'</div></div>';
+  }
+
+  // Reference answer
+  if(answer && answer.innerHTML.trim()){
+    html+='<div class="section"><div class="section-title">参考答案</div><div class="answer">'+answer.innerHTML+'</div></div>';
+  }
+
+  // AI evaluation
+  if(evalResult && evalResult.innerHTML.trim()){
+    html+='<div class="section"><div class="section-title">AI批改结果</div><div class="eval">'+evalResult.innerHTML+'</div></div>';
+  }
+
+  html+='<div class="no-print" style="text-align:center;margin-top:30px"><button onclick="window.print()" style="padding:10px 30px;font-size:14px;background:#4f46e5;color:#fff;border:none;border-radius:6px;cursor:pointer">打印 / 保存为PDF</button></div>';
+  html+='</body></html>';
+
+  var w=window.open('','_blank');
+  w.document.write(html);
+  w.document.close();
+  setTimeout(function(){w.print();},500);
 }
 
 /* ========================================
