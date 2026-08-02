@@ -310,12 +310,42 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
 .exam-sent-text .hl{background:var(--warning-bg);color:var(--warning);font-weight:600;padding:1px 3px;border-radius:3px}
 .wb-exam-btn{font-size:11px;padding:2px 8px;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--bg-card);color:var(--primary);cursor:pointer;white-space:nowrap}
 .wb-exam-btn:hover{background:var(--primary);color:#fff}
+
+/* === Module Tip === */
+.module-tip{background:linear-gradient(135deg,#f0f7ff 0%,#e8f4fe 100%);border-left:3px solid var(--primary);border-radius:var(--radius-sm);padding:10px 14px;margin-bottom:16px;font-size:13px;color:var(--text-light);line-height:1.6;display:flex;align-items:flex-start;gap:8px}
+.module-tip .tip-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.module-tip strong{color:var(--primary)}
+
+/* === Onboarding Modal === */
+.onboard-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.55);z-index:9999;display:flex;align-items:center;justify-content:center;opacity:0;transition:opacity .3s}
+.onboard-overlay.show{opacity:1}
+.onboard-box{background:#fff;border-radius:16px;max-width:560px;width:90%;max-height:85vh;overflow-y:auto;padding:32px 32px 24px;box-shadow:0 20px 60px rgba(0,0,0,0.2);transform:translateY(20px);transition:transform .3s}
+.onboard-overlay.show .onboard-box{transform:translateY(0)}
+.onboard-title{font-size:22px;font-weight:700;color:var(--text);margin-bottom:4px;text-align:center}
+.onboard-subtitle{font-size:14px;color:var(--text-muted);text-align:center;margin-bottom:24px}
+.onboard-flow{background:var(--bg-secondary);border-radius:12px;padding:20px;margin-bottom:20px}
+.onboard-flow-title{font-size:14px;font-weight:600;color:var(--primary);margin-bottom:14px;text-align:center}
+.onboard-step{display:flex;align-items:flex-start;gap:12px;margin-bottom:14px}
+.onboard-step:last-child{margin-bottom:0}
+.onboard-step-num{width:28px;height:28px;border-radius:50%;background:var(--primary);color:#fff;font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.onboard-step-content{font-size:13px;line-height:1.6;color:var(--text)}
+.onboard-step-content strong{color:var(--text)}
+.onboard-step-content .step-tip{color:var(--text-muted);font-size:12px}
+.onboard-arrow{text-align:center;color:var(--text-muted);font-size:18px;margin:-6px 0 -6px 40px}
+.onboard-features{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap}
+.onboard-feature{text-align:center;flex:1;min-width:100px}
+.onboard-feature-icon{font-size:28px;margin-bottom:4px}
+.onboard-feature-text{font-size:12px;color:var(--text-light);line-height:1.4}
+.onboard-btn{width:100%;padding:14px;background:var(--primary);color:#fff;border:none;border-radius:var(--radius);font-size:16px;font-weight:600;cursor:pointer;transition:background .2s}
+.onboard-btn:hover{background:var(--primary-dark,var(--primary));opacity:0.9}
+.onboard-skip{text-align:center;margin-top:12px;font-size:13px;color:var(--text-muted);cursor:pointer}
+.onboard-skip:hover{text-decoration:underline}
 </style>
 <style>.trae-browser-inspect-overlay{position:fixed;top:0;left:0;width:100%;height:100%;z-index:999997;pointer-events:auto;background:rgba(0,0,0,0)}.trae-browser-inspect-highlight-box{position:absolute;top:0;left:0;z-index:999998;display:none}.trae-browser-inspect-highlight-tag{position:absolute;left:0px;top:0px;height:18px;padding:0 6px;box-sizing:border-box;border-radius:4px;background-color:var(--vscode-icube-colorSuccessHover, "#2FB287");color:var(--vscode-icube-colorSnow, "#fff");font-size:12px;font-weight:400;display:none;align-items:center;z-index:999999}.trae-browser-inspect-highlight-box-show{display:flex}.trae-browser-inspect-select-button.trae-browser-inspect-highlight-box-show{display:flex !important}.trae-browser-inspect-select-button{position:absolute;top:0;left:0;background-color:var(--vscode-icube--bg-bg-base-secondary, "#222427");color:var(--vscode-icube--text-text-default-active, "#F5F9FE");font-size:11px;font-weight:500;border:1px solid var(--vscode-icube--border-neutral-l1, "#E0E2F217");border-radius:6px;padding:0 8px;height:32px;display:none;align-items:center;cursor:pointer;z-index:999999;gap:4px}.trae-browser-inspect-select-button svg,.trae-browser-inspect-select-button span{z-index:1}.trae-browser-inspect-select-highlight-box{background:rgba(0,0,0,0) !important}.trae-browser-inspect-select-highlight-box .trae-browser-inspect-highlight-tag{background-color:var(--vscode-icube--status-success-active, "#1E8B56")}.trae-browser-inspect-comment-card-container{position:fixed;top:0;left:0;z-index:9999999;pointer-events:auto}.trae-browser-inspect-comment-card-container .trae-browser-inspect-comment-card{display:flex;padding-top:0px !important;align-items:center;z-index:9999999 !important;background-color:var(--vscode-icube--bg-bg-menu)}*[contenteditable]{outline:none}.trae-browser-inspect-click-effect{position:fixed;width:40px;height:40px;margin-left:-20px;margin-top:-20px;border-radius:50%;background-color:var(--vscode-icube-colorSuccessHover, #2FB287);pointer-events:none;animation:trae-browser-inspect-ripple 500ms ease-out forwards;z-index:999999}@keyframes trae-browser-inspect-ripple{0%{transform:scale(0.3);opacity:.8}100%{transform:scale(2);opacity:0}}.trae-browser-inspect-ref-box{position:absolute;border:2px solid var(--vscode-icube-colorSuccessHover, "#2FB287");pointer-events:none;z-index:999998;animation:trae-browser-inspect-fadeInOut 2s ease-in-out forwards}.trae-browser-inspect-ref-label{position:absolute;top:-14px;left:0;height:14px;padding:0 4px;box-sizing:border-box;border-radius:2px;background-color:var(--vscode-icube-colorSuccessHover, "#2FB287");color:var(--vscode-icube-colorSnow, "#fff");font-size:9px;font-weight:500;display:flex;align-items:center;white-space:nowrap;z-index:999999}@keyframes trae-browser-inspect-fadeInOut{0%{opacity:0}10%{opacity:1}90%{opacity:1}100%{opacity:0}}.trae-browser-inspect-input-highlight{position:absolute;border:2px solid var(--vscode-icube-colorSuccessHover, "#2FB287");border-radius:4px;pointer-events:none;z-index:999998;box-shadow:0 0 8px var(--vscode-icube-colorSuccessHover, "#2FB287");animation:trae-browser-inspect-input-pulse 600ms ease-out forwards}@keyframes trae-browser-inspect-input-pulse{0%{opacity:0;box-shadow:0 0 0 var(--vscode-icube-colorSuccessHover, "#2FB287")}30%{opacity:1;box-shadow:0 0 12px var(--vscode-icube-colorSuccessHover, "#2FB287")}100%{opacity:0;box-shadow:0 0 0 var(--vscode-icube-colorSuccessHover, "#2FB287")}}.trae-browser-inspect-virtual-cursor{position:fixed;width:20px;height:20px;pointer-events:none;z-index:9999999;opacity:0;transition:opacity .2s ease}.trae-browser-inspect-virtual-cursor.trae-browser-inspect-cursor-visible{opacity:1}.trae-browser-inspect-virtual-cursor.trae-browser-inspect-cursor-idle{animation:trae-browser-inspect-cursor-breathe 2s ease-in-out infinite}.trae-browser-inspect-virtual-cursor svg{width:20px;height:20px;filter:drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3))}@keyframes trae-browser-inspect-cursor-breathe{0%,100%{opacity:.7}50%{opacity:1}}.trae-browser-inspect-scroll-indicator{position:fixed;display:flex;align-items:center;justify-content:center;gap:6px;padding:8px 16px;border-radius:8px;background-color:rgba(0,0,0,.7);color:#fff;font-size:13px;font-weight:500;pointer-events:none;z-index:999999;animation:trae-browser-inspect-indicator-fade 800ms ease-out forwards;backdrop-filter:blur(4px)}.trae-browser-inspect-scroll-indicator svg{width:16px;height:16px;fill:#fff}.trae-browser-inspect-scroll-indicator.trae-scroll-up{top:12px;left:50%;transform:translateX(-50%)}.trae-browser-inspect-scroll-indicator.trae-scroll-down{bottom:12px;left:50%;transform:translateX(-50%)}.trae-browser-inspect-scroll-indicator.trae-scroll-left{left:12px;top:50%;transform:translateY(-50%)}.trae-browser-inspect-scroll-indicator.trae-scroll-right{right:12px;top:50%;transform:translateY(-50%)}@keyframes trae-browser-inspect-indicator-fade{0%{opacity:0;transform:translateX(-50%) scale(0.9)}15%{opacity:1;transform:translateX(-50%) scale(1)}85%{opacity:1}100%{opacity:0}}.trae-browser-inspect-scroll-indicator.trae-scroll-left,.trae-browser-inspect-scroll-indicator.trae-scroll-right{animation-name:trae-browser-inspect-indicator-fade-y}@keyframes trae-browser-inspect-indicator-fade-y{0%{opacity:0;transform:translateY(-50%) scale(0.9)}15%{opacity:1;transform:translateY(-50%) scale(1)}85%{opacity:1}100%{opacity:0}}.trae-browser-inspect-key-badge{position:fixed;bottom:60px;left:50%;transform:translateX(-50%);padding:8px 20px;border-radius:8px;background-color:rgba(0,0,0,.8);color:#fff;font-size:18px;font-weight:600;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,monospace;pointer-events:none;z-index:999999;animation:trae-browser-inspect-key-pop 500ms ease-out forwards;backdrop-filter:blur(4px);border:1px solid hsla(0,0%,100%,.15);box-shadow:0 4px 12px rgba(0,0,0,.3);letter-spacing:1px}@keyframes trae-browser-inspect-key-pop{0%{opacity:0;transform:translateX(-50%) translateY(10px) scale(0.9)}20%{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}80%{opacity:1}100%{opacity:0;transform:translateX(-50%) translateY(-10px)}}.trae-browser-inspect-step-badge{position:fixed;top:12px;left:12px;padding:6px 12px;border-radius:6px;background-color:var(--vscode-icube-colorSuccessHover, #2FB287);color:#fff;font-size:12px;font-weight:600;pointer-events:none;z-index:999999;animation:trae-browser-inspect-step-slide 600ms ease-out forwards;box-shadow:0 2px 8px rgba(47,178,135,.3);max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.trae-browser-inspect-step-badge.trae-step-old{opacity:.4;transform:translateY(0)}@keyframes trae-browser-inspect-step-slide{0%{opacity:0;transform:translateX(-20px)}20%{opacity:1;transform:translateX(0)}100%{opacity:1;transform:translateX(0)}}.trae-browser-inspect-drag-trail{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:999998}.trae-browser-inspect-drag-trail svg{width:100%;height:100%}.trae-browser-inspect-drag-trail .trae-drag-path{fill:none;stroke:var(--vscode-icube-colorSuccessHover, #2FB287);stroke-width:2;stroke-dasharray:8 4;opacity:.6;animation:trae-browser-inspect-dash 600ms linear forwards}.trae-browser-inspect-drag-trail .trae-drag-dot{fill:var(--vscode-icube-colorSuccessHover, #2FB287);filter:drop-shadow(0 0 4px rgba(47, 178, 135, 0.6))}.trae-browser-inspect-drag-trail .trae-drag-endpoint{fill:none;stroke:var(--vscode-icube-colorSuccessHover, #2FB287);stroke-width:2;opacity:.5}@keyframes trae-browser-inspect-dash{0%{stroke-dashoffset:200}100%{stroke-dashoffset:0}}.trae-browser-inspect-drag-trail.trae-drag-fade{animation:trae-browser-inspect-trail-fade 400ms ease-out forwards}@keyframes trae-browser-inspect-trail-fade{0%{opacity:1}100%{opacity:0}}</style><script type="module">(async () => {
   try {
     const client = await import('/@vite/client');
     const hmr = client.createHotContext('hmr-handler/fake.js');
-    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785668623941']);
+    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785680554485']);
   } catch {}
 })();</script><style>.buttonsCard-bTXa5j {
   padding: var(--spacer-4);
@@ -672,7 +702,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   try {
     const client = await import('/@vite/client');
     const hmr = client.createHotContext('hmr-handler/fake.js');
-    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785668623953']);
+    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785680554496']);
   } catch {}
 })();</script><style>.buttonsCard-bTXa5j {
   padding: var(--spacer-4);
@@ -2766,6 +2796,55 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
 <!-- Tooltip -->
 <div class="tooltip" id="tooltip" style="display:none"></div>
 
+<!-- Onboarding Modal -->
+<div class="onboard-overlay" id="onboardOverlay">
+  <div class="onboard-box">
+    <div class="onboard-title">句链 · 至简高中英语</div>
+    <div class="onboard-subtitle">先记住，再用出来 — 生词本是你学习的核心</div>
+    <div class="onboard-flow">
+      <div class="onboard-flow-title">学习路径</div>
+      <div class="onboard-step">
+        <div class="onboard-step-num">1</div>
+        <div class="onboard-step-content">
+          <strong>刷单词</strong> — 按考频从高到低出现，高频词优先记住，提分最快
+          <div class="step-tip">点「认识」下次少出现，点「模糊/不认识」自动进入生词本，点「太简单」永久移除</div>
+        </div>
+      </div>
+      <div class="onboard-arrow">↓</div>
+      <div class="onboard-step">
+        <div class="onboard-step-num">2</div>
+        <div class="onboard-step-content">
+          <strong>生词本</strong> — 这里是你所有"还没掌握"的词，是学习的核心枢纽
+          <div class="step-tip">AI文章、中英互译、测验都会从这里取词出题。勾选单词后去「用单词」模块</div>
+        </div>
+      </div>
+      <div class="onboard-arrow">↓</div>
+      <div class="onboard-step">
+        <div class="onboard-step-num">3</div>
+        <div class="onboard-step-content">
+          <strong>用单词</strong> — 造句 / 中英互译 / 真题阅读 / 真题搜索
+          <div class="step-tip">中英互译点「AI出题」用生词本单词出题，分步翻译练句子拆解能力</div>
+        </div>
+      </div>
+      <div class="onboard-arrow">↓</div>
+      <div class="onboard-step">
+        <div class="onboard-step-num">4</div>
+        <div class="onboard-step-content">
+          <strong>循环复习</strong> — 不会的词继续留在生词本，按艾宾浩斯曲线循环出现
+          <div class="step-tip">新词:复习比例默认1:3，可在设置中调整</div>
+        </div>
+      </div>
+    </div>
+    <div class="onboard-features">
+      <div class="onboard-feature"><div class="onboard-feature-icon">🔍</div><div class="onboard-feature-text">词根词缀分析<br>点单词卡片上的按钮</div></div>
+      <div class="onboard-feature"><div class="onboard-feature-icon">📄</div><div class="onboard-feature-text">PDF导出<br>文章和翻译可导出</div></div>
+      <div class="onboard-feature"><div class="onboard-feature-icon">📊</div><div class="onboard-feature-text">学习统计<br>追踪每日进度</div></div>
+    </div>
+    <button class="onboard-btn" onclick="closeOnboarding()">开始学习</button>
+    <div class="onboard-skip" onclick="closeOnboarding()">不再显示</div>
+  </div>
+</div>
+
 <!-- Exam Sentences Modal -->
 <div class="exam-modal" id="examModal" onclick="if(event.target===this)closeExamModal()">
   <div class="exam-modal-box">
@@ -2840,6 +2919,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   <!-- ========== 1. Dashboard ========== -->
   <div class="page" id="page-dashboard">
     <h2 class="page-title">学习首页</h2>
+    <div class="module-tip"><span class="tip-icon">🎯</span><div>学习路径：<strong>刷单词</strong> → 不会的进入<strong>生词本</strong> → 去<strong>用单词</strong>模块（造句/翻译/阅读）练习 → 不会的继续循环复习。首次使用可点左下角「设置」查看引导。</div></div>
     <div class="stats-grid">
       <div class="stat-card"><div class="stat-icon purple">📚</div><div class="stat-info"><h3 id="dash-today">0</h3><p>今日已学</p></div></div>
       <div class="stat-card"><div class="stat-icon orange">🔥</div><div class="stat-info"><h3>7天</h3><p>连续打卡</p></div></div>
@@ -2860,6 +2940,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   <!-- ========== 2. Vocab ========== -->
   <div class="page" id="page-vocab">
     <h2 class="page-title">词汇学习</h2>
+    <div class="module-tip"><span class="tip-icon">💡</span><div>单词按<strong>考频从高到低</strong>出现，高频词优先记住提分最快。点「模糊」或「不认识」的词会自动进入<strong>生词本</strong>，点「太简单」则永久跳过。可点「上一个」回退修改误操作。</div></div>
     <div class="vocab-progress">
       <div class="progress-bar-wrap"><div class="progress-bar" id="vocabProgressBar" style="width:0%"></div></div>
       <div class="progress-text"><span id="vocabProgressText">0 / 50</span></div>
@@ -2896,6 +2977,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   <!-- ========== 3. Practice ========== -->
   <div class="page" id="page-practice">
     <h2 class="page-title">练习测验</h2>
+    <div class="module-tip"><span class="tip-icon">💡</span><div>测验题目来自你的<strong>生词本</strong>中尚未掌握的词（mastery &lt; 5）。生词本单词不足时会自动从已学单词中补充。</div></div>
     <div class="tabs" id="practiceTabs">
       <div class="tab active" data-tab="en2cn" onclick="switchPracticeTab('en2cn')">英→中</div>
       <div class="tab" data-tab="cn2en" onclick="switchPracticeTab('cn2en')">中→英</div>
@@ -2916,6 +2998,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   <!-- ========== 4. Wordbook ========== -->
   <div class="page" id="page-wordbook">
     <h2 class="page-title">生词本</h2>
+    <div class="module-tip"><span class="tip-icon">💡</span><div>这里是你所有"还没掌握"的词。<strong>勾选单词</strong>后去「造句」或「中英互译」，AI会用这些词出题。点单词旁的「真题例句」可查看该词在高考真题中的原句。</div></div>
     <div class="wb-search">
       <span class="search-icon">🔍</span>
       <input type="text" id="wbSearchInput" placeholder="搜索单词..." oninput="filterWordbook()">
@@ -2940,6 +3023,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   <!-- ========== 5. AI Article ========== -->
   <div class="page" id="page-ai-article">
     <h2 class="page-title">AI文章生成</h2>
+    <div class="module-tip"><span class="tip-icon">💡</span><div>先在<strong>生词本勾选</strong>单词，再选择语法类型，AI会用这些生词写一篇指定语法的文章。生成后可查看中文翻译和英文主干句版，支持导出PDF。</div></div>
     <div class="steps" id="aiSteps">
       <div class="step active" data-step="1"><div class="step-num">1</div><div class="step-label">选词</div></div>
       <div class="step-line"></div>
@@ -3011,6 +3095,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   <!-- ========== 6. Translation ========== -->
   <div class="page" id="page-translation">
     <h2 class="page-title">翻译练习</h2>
+    <div class="module-tip"><span class="tip-icon">💡</span><div>点右上角「<strong>AI出题</strong>」用生词本单词生成翻译题。中翻英采用<strong>分步翻译</strong>：先翻译主干句，再翻译从句，最后合并完整翻译，训练句子拆解能力。</div></div>
     <div style="display:flex;gap:8px;margin-bottom:16px">
       <button class="tab active" id="transModeC2E" onclick="switchTransMode('c2e')">中翻英</button>
       <button class="tab" id="transModeE2C" onclick="switchTransMode('e2c')">英翻中</button>
@@ -3121,6 +3206,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   <!-- ========== 11. Settings ========== -->
   <div class="page active" id="page-settings">
     <h2 class="page-title">设置</h2>
+    <div class="module-tip"><span class="tip-icon">✅</span><div>API已内置配置，<strong>打开即用</strong>无需手动设置。可在此调整每日学习量和新词复习比例。</div></div>
     <div class="card">
       <div class="setting-group">
         <div class="setting-item">
@@ -3163,12 +3249,16 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
       </div>
       <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border)">
         <h4 style="margin-bottom:12px">API 配置</h4>
-        <p style="font-size:13px;color:var(--text-light);margin-bottom:8px">Cloudflare Workers 地址（留空则使用同源请求，适用于本地测试）</p>
+        <p style="font-size:13px;color:var(--text-light);margin-bottom:8px">已默认配置好，正常使用无需修改。如需切换API地址可在此修改：</p>
         <div style="display:flex;gap:8px">
-          <input type="text" id="apiBaseInput" placeholder="https://your-worker.your-subdomain.workers.dev" style="flex:1;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:14px">
+          <input type="text" id="apiBaseInput" placeholder="https://api.sentencechain.com" style="flex:1;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:14px">
           <button class="btn-primary" onclick="saveApiBase()">保存</button>
         </div>
         <p id="apiStatus" style="font-size:12px;color:var(--text-muted);margin-top:6px">当前：api.sentencechain.com</p>
+      </div>
+      <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border)">
+        <h4 style="margin-bottom:12px">使用帮助</h4>
+        <button class="btn-outline" onclick="showOnboarding()">查看操作引导</button>
       </div>
       <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border)">
         <h4 style="margin-bottom:12px;color:var(--danger)">危险操作</h4>
@@ -3201,15 +3291,14 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
    DATA
    ======================================== */
 // === API Configuration ===
-// Cloudflare Workers URL — replace with your own after deployment
-// To change: either set it here, or save it via Settings page (stored in localStorage)
-// Local testing (Flask on localhost:5000): leave as ''
+// Cloudflare Workers URL — default to production API
+// Users can override via Settings page (stored in localStorage)
 var API_BASE = (function(){
   try{
     var saved = localStorage.getItem('jl_api_base');
     if(saved) return saved;
   }catch(e){}
-  return ''; // default: empty = same-origin (for Flask local dev or Worker-served pages)
+  return 'https://api.sentencechain.com'; // default: production API
 })();
 function api(path){return API_BASE+path;}
 function setApiBase(url){
@@ -5298,6 +5387,19 @@ function exportTranslationPDF(){
 }
 
 /* ========================================
+   Onboarding
+   ======================================== */
+function closeOnboarding(){
+  var overlay=document.getElementById('onboardOverlay');
+  if(overlay) overlay.classList.remove('show');
+  try{localStorage.setItem('jl_onboarded','1');}catch(e){}
+}
+function showOnboarding(){
+  var overlay=document.getElementById('onboardOverlay');
+  if(overlay) overlay.classList.add('show');
+}
+
+/* ========================================
    INIT
    ======================================== */
 (function(){
@@ -5305,6 +5407,12 @@ function exportTranslationPDF(){
   loadVocab(function(){
     navigateTo(state.currentPage||'dashboard');
   });
+  // Show onboarding for first-time users
+  try{
+    if(!localStorage.getItem('jl_onboarded')){
+      setTimeout(showOnboarding,500);
+    }
+  }catch(e){}
   // listen for window resize for charts
   window.addEventListener('resize',function(){
     if(state.currentPage==='stats') renderStats();
