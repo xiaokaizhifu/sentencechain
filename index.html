@@ -315,7 +315,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   try {
     const client = await import('/@vite/client');
     const hmr = client.createHotContext('hmr-handler/fake.js');
-    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785663478149']);
+    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785664787604']);
   } catch {}
 })();</script><style>.buttonsCard-bTXa5j {
   padding: var(--spacer-4);
@@ -672,7 +672,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   try {
     const client = await import('/@vite/client');
     const hmr = client.createHotContext('hmr-handler/fake.js');
-    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785663478161']);
+    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785664787616']);
   } catch {}
 })();</script><style>.buttonsCard-bTXa5j {
   padding: var(--spacer-4);
@@ -3023,15 +3023,23 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
       <div class="trans-target-words" id="transTargetWords"></div>
     </div>
     <div class="card">
+      <!-- Full sentence display -->
+      <div id="transFullSentenceArea" style="margin-bottom:16px;padding:12px 16px;background:var(--bg-secondary);border-radius:var(--radius-sm);border-left:3px solid var(--primary)">
+        <div style="font-size:13px;font-weight:600;color:var(--text-muted);margin-bottom:6px">完整中文句子</div>
+        <div class="trans-sentence" id="transFullSentence" style="font-size:16px;font-weight:500"></div>
+      </div>
+      <div id="transWordbookHint" style="display:none;margin-bottom:12px;padding:8px 12px;background:#fff3cd;border-radius:6px;font-size:13px;color:#975008">
+        以下为演示题目，点击右上方"AI出题"可使用生词本中的单词生成练习
+      </div>
       <!-- Step-by-step translation area -->
       <div id="transStepArea">
         <div style="margin-bottom:16px">
-          <div style="font-size:13px;font-weight:600;color:var(--primary);margin-bottom:6px">第一步：主干句</div>
+          <div style="font-size:13px;font-weight:600;color:var(--primary);margin-bottom:6px">第一步：翻译主干句</div>
           <div class="trans-sentence" id="transMainSentence" style="font-size:15px"></div>
           <textarea class="trans-input" id="transMainInput" placeholder="翻译主干句..." style="min-height:60px"></textarea>
         </div>
         <div style="margin-bottom:16px">
-          <div style="font-size:13px;font-weight:600;color:var(--warning);margin-bottom:6px">第二步：从句部分</div>
+          <div style="font-size:13px;font-weight:600;color:var(--warning);margin-bottom:6px">第二步：翻译从句</div>
           <div class="trans-sentence" id="transClauseSentence" style="font-size:15px"></div>
           <textarea class="trans-input" id="transClauseInput" placeholder="翻译从句..." style="min-height:60px"></textarea>
         </div>
@@ -3272,45 +3280,50 @@ function loadPassages(callback){
 
 const translationExercises = [
   {grammar:"定语从句",targetWords:["abandon","determine","significant"],
-   chinese:"那个放弃研究的科学家最终决定从事一项重要的新项目。",
+   chinese:"放弃研究的科学家最终决定从事一项重要的新项目。",
    chineseMain:"科学家最终决定从事一项重要的新项目。",
-   chineseClause:"放弃研究的",
+   chineseClause:"科学家放弃研究。",
    answer:"The scientist <span class='key-struct'>who abandoned the research</span> ultimately determined to pursue a significant new project.",
    englishMain:"The scientist ultimately determined to pursue a significant new project.",
    englishClause:"who abandoned the research",
-   keyStructure:"who abandoned the research (关系代词who引导定语从句)"},
+   keyStructure:"who abandoned the research (关系代词who引导定语从句，修饰scientist)",
+   isDemo:true},
   {grammar:"名词性从句",targetWords:["anticipate","consequence","inevitable"],
-   chinese:"专家预期这种行为的后果是不可避免的，这令人担忧。",
-   chineseMain:"专家预期这种行为的后果是不可避免的。",
-   chineseClause:"这令人担忧。",
-   answer:"Experts anticipate <span class='key-struct'>that the consequence of this behavior is inevitable</span>, <span class='key-struct'>which is concerning</span>.",
-   englishMain:"Experts anticipate that the consequence of this behavior is inevitable.",
-   englishClause:"which is concerning",
-   keyStructure:"that the consequence... (that引导宾语从句); which is concerning (which引导非限制性定语从句)"},
+   chinese:"专家预期这种行为的后果是不可避免的。",
+   chineseMain:"专家预期一件事。",
+   chineseClause:"这种行为的后果是不可避免的。",
+   answer:"Experts anticipate <span class='key-struct'>that the consequence of this behavior is inevitable</span>.",
+   englishMain:"Experts anticipate (something).",
+   englishClause:"that the consequence of this behavior is inevitable",
+   keyStructure:"that the consequence... (that引导宾语从句，作anticipate的宾语)",
+   isDemo:true},
   {grammar:"状语从句",targetWords:["maintain","temporary","eventually"],
    chinese:"虽然困难只是暂时的，但我们必须维持信心，因为我们最终会成功。",
    chineseMain:"我们必须维持信心。",
-   chineseClause:"虽然困难只是暂时的 / 因为我们最终会成功。",
+   chineseClause:"虽然困难只是暂时的。/ 因为我们最终会成功。",
    answer:"<span class='key-struct'>Although the difficulties are temporary</span>, we must maintain our confidence <span class='key-struct'>because we will eventually succeed</span>.",
    englishMain:"We must maintain our confidence.",
-   englishClause:"Although the difficulties are temporary / because we will eventually succeed",
-   keyStructure:"Although... (让步状语从句); because... (原因状语从句)"},
+   englishClause:"Although the difficulties are temporary. / Because we will eventually succeed.",
+   keyStructure:"Although... (让步状语从句); because... (原因状语从句)",
+   isDemo:true},
   {grammar:"非谓语动词",targetWords:["implement","considerable","beneficial"],
-   chinese:"实施 considerable 的 changes 被证明是对公司 beneficial 的。",
-   chineseMain:"被证明是对公司 beneficial 的。",
-   chineseClause:"实施 considerable 的 changes",
+   chinese:"实施大规模的变革被证明对公司有益。",
+   chineseMain:"这件事被证明对公司有益。",
+   chineseClause:"实施大规模的变革。",
    answer:"<span class='key-struct'>Implementing</span> considerable changes <span class='key-struct'>proved to be</span> beneficial to the company.",
-   englishMain:"... proved to be beneficial to the company.",
+   englishMain:"It proved to be beneficial to the company.",
    englishClause:"Implementing considerable changes",
-   keyStructure:"Implementing (动名词作主语); proved to be (prove不定式)"},
+   keyStructure:"Implementing (动名词作主语); proved to be (prove不定式)",
+   isDemo:true},
   {grammar:"强调句",targetWords:["fundamental","distinguish","vulnerable"],
-   chinese:"正是这种 fundamental 的能力使得人类能够 distinguish 自己并保护 vulnerable 的群体。",
-   chineseMain:"这种能力使得人类能够 distinguish 自己并保护 vulnerable 的群体。",
-   chineseClause:"正是... (It is... that... 强调结构)",
+   chinese:"正是这种基本能力使得人类能够区分自己并保护脆弱的群体。",
+   chineseMain:"这种基本能力使得人类能够区分自己并保护脆弱的群体。",
+   chineseClause:"正是这种基本能力...（It is... that... 强调结构）",
    answer:"<span class='key-struct'>It is</span> this fundamental ability <span class='key-struct'>that</span> enables human beings to distinguish themselves and protect vulnerable groups.",
    englishMain:"This fundamental ability enables human beings to distinguish themselves and protect vulnerable groups.",
-   englishClause:"It is ... that ... (强调句结构)",
-   keyStructure:"It is... that... (强调句结构)"}
+   englishClause:"It is ... that ... (强调句结构，强调this fundamental ability)",
+   keyStructure:"It is... that... (强调句结构，强调主语)",
+   isDemo:true}
 ];
 
 const grammarCategories = [
@@ -4112,6 +4125,8 @@ function renderTransQuestion(){
   document.getElementById('transInput').value='';
   document.getElementById('transAnswerMain').innerHTML='';
   document.getElementById('transAnswerClause').innerHTML='';
+  var fullSentEl=document.getElementById('transFullSentence');
+  var hintEl=document.getElementById('transWordbookHint');
   if(transMode==='c2e'){
     var ex=translationExercises[state.transTabIndex];
     document.getElementById('transGrammarLabel').textContent=ex.grammar;
@@ -4120,9 +4135,17 @@ function renderTransQuestion(){
       wordsHtml+='<span class="chip" style="cursor:default">'+w+'</span>';
     });
     document.getElementById('transTargetWords').innerHTML=wordsHtml;
+    // Show full Chinese sentence first
+    fullSentEl.textContent=ex.chinese;
+    // Show wordbook hint for demo exercises
+    if(ex.isDemo){
+      hintEl.style.display='block';
+    }else{
+      hintEl.style.display='none';
+    }
     // Show split: main clause and subordinate clause
-    document.getElementById('transMainSentence').textContent=ex.chineseMain||ex.chinese;
-    document.getElementById('transClauseSentence').textContent=ex.chineseClause||'（本句无独立从句，请在第三步直接翻译完整句子）';
+    document.getElementById('transMainSentence').textContent='主干句：'+(ex.chineseMain||ex.chinese);
+    document.getElementById('transClauseSentence').textContent='从句：'+(ex.chineseClause||'（本句无独立从句，请在第三步直接翻译完整句子）');
     document.getElementById('transMainInput').placeholder='将中文主干句翻译成英文...';
     document.getElementById('transClauseInput').placeholder='将中文从句翻译成英文...';
     document.getElementById('transInput').placeholder='将主干和从句合并为完整英文翻译...';
@@ -4142,11 +4165,14 @@ function renderTransQuestion(){
       }
     });
     document.getElementById('transTargetWords').innerHTML=wordsHtml||'<span style="color:var(--text-muted);font-size:13px">无目标词</span>';
-    // For E2C, show the full English sentence, and instruct to split into main + clause
-    document.getElementById('transMainSentence').textContent='英文原句：'+sentence;
-    document.getElementById('transClauseSentence').textContent='（请先拆分英文主干和从句，再分别翻译）';
-    document.getElementById('transMainInput').placeholder='第一步：拆出英文主干句，翻译成中文...';
-    document.getElementById('transClauseInput').placeholder='第二步：拆出英文从句，翻译成中文...';
+    // For E2C, show the full English sentence
+    fullSentEl.textContent='英文原句：'+sentence;
+    hintEl.style.display='block';
+    hintEl.textContent='英翻中模式：请先阅读完整英文句子，再拆分主干和从句分别翻译';
+    document.getElementById('transMainSentence').textContent='第一步：拆出英文主干句，翻译成中文';
+    document.getElementById('transClauseSentence').textContent='第二步：拆出英文从句，翻译成中文';
+    document.getElementById('transMainInput').placeholder='在此输入主干句的中文翻译...';
+    document.getElementById('transClauseInput').placeholder='在此输入从句的中文翻译...';
     document.getElementById('transInput').placeholder='第三步：合并为完整中文翻译...';
     document.getElementById('transAnswerText').innerHTML='<span style="color:var(--text-muted)">英翻中模式：点击"查看答案"获取参考翻译，点击"AI批改"获取评分</span>';
     document.getElementById('transAnswer').classList.remove('show');
@@ -4309,7 +4335,8 @@ function generateNewTransExercise(){
         answer:d.referenceEnglish||'',
         englishMain:d.englishMain||'',
         englishClause:d.englishClause||'',
-        keyStructure:d.keyStructure||''
+        keyStructure:d.keyStructure||'',
+        isDemo:false
       };
       translationExercises[state.transTabIndex]=ex;
       renderTransQuestion();
@@ -5157,6 +5184,7 @@ function exportArticlePDF(){
 }
 
 function exportTranslationPDF(){
+  var fullSent=document.getElementById('transFullSentence');
   var mainSent=document.getElementById('transMainSentence');
   var clauseSent=document.getElementById('transClauseSentence');
   var mainInput=document.getElementById('transMainInput');
@@ -5179,6 +5207,7 @@ function exportTranslationPDF(){
   html+='.meta{text-align:center;color:#888;font-size:13px;margin-bottom:24px}';
   html+='.section{margin-bottom:20px}.section-title{font-weight:700;font-size:14px;color:#666;margin-bottom:6px}';
   html+='.sentence{font-size:17px;padding:14px;background:#f8f9fa;border-radius:8px;line-height:1.8}';
+  html+='.full-sentence{font-size:18px;padding:16px;background:#e8eaf6;border-radius:8px;line-height:1.8;font-weight:500;border-left:4px solid #3f51b5}';
   html+='.user-input{font-size:15px;padding:14px;background:#e8f5e9;border-radius:8px;min-height:30px;white-space:pre-wrap}';
   html+='.answer{font-size:15px;padding:14px;background:#fff3cd;border-radius:8px;line-height:1.8}';
   html+='.eval{font-size:14px;padding:14px;background:#e3f2fd;border-radius:8px;line-height:1.7}';
@@ -5188,6 +5217,11 @@ function exportTranslationPDF(){
   html+='<h1>句链-至简高中英语</h1>';
   html+='<div class="meta">翻译练习 · '+(transMode==='c2e'?'中翻英':'英翻中')+' · '+(grammarLabel?grammarLabel.textContent:'')+' · '+new Date().toLocaleDateString('zh-CN')+'</div>';
 
+  // Full sentence first
+  if(fullSent&&fullSent.textContent.trim()){
+    html+='<div class="section"><div class="section-title">完整句子</div><div class="full-sentence">'+fullSent.textContent+'</div></div>';
+  }
+
   // Step 1: Main clause
   html+='<div class="section"><div class="section-title">第一步：主干句</div><div class="sentence">'+mainSent.textContent+'</div></div>';
   if(mainInput&&mainInput.value.trim()){
@@ -5196,7 +5230,7 @@ function exportTranslationPDF(){
 
   // Step 2: Clause
   if(clauseSent&&clauseSent.textContent.trim()){
-    html+='<div class="section"><div class="section-title">第二步：从句部分</div><div class="sentence">'+clauseSent.textContent+'</div></div>';
+    html+='<div class="section"><div class="section-title">第二步：从句</div><div class="sentence">'+clauseSent.textContent+'</div></div>';
     if(clauseInput&&clauseInput.value.trim()){
       html+='<div class="section"><div class="section-title">从句翻译</div><div class="user-input">'+clauseInput.value+'</div></div>';
     }
