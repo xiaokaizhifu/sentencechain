@@ -1691,7 +1691,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   try {
     const client = await import('/@vite/client');
     const hmr = client.createHotContext('hmr-handler/fake.js');
-    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785734220136']);
+    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785734606087']);
   } catch {}
 })();</script><style>.buttonsCard-bTXa5j {
   padding: var(--spacer-4);
@@ -2029,7 +2029,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   try {
     const client = await import('/@vite/client');
     const hmr = client.createHotContext('hmr-handler/fake.js');
-    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785734220148']);
+    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785734606099']);
   } catch {}
 })();</script><style>.buttonsCard-bTXa5j {
   padding: var(--spacer-4);
@@ -3637,19 +3637,19 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
     <div class="module-tip"><span class="tip-icon">💡</span><div>单词按<strong>考频从高到低</strong>出现，高频词优先记住提分最快。点「模糊」或「不认识」的词会自动进入<strong>生词本</strong>，点「太简单」则永久跳过。可点「上一个」回退修改误操作。</div></div>
     <div class="vocab-progress">
       <div class="progress-bar-wrap"><div class="progress-bar" id="vocabProgressBar" style="width: 9%;"></div></div>
-      <div class="progress-text"><span id="vocabProgressText">109 / 1200 · 🆕 新词 · 共5349词</span></div>
+      <div class="progress-text"><span id="vocabProgressText">113 / 1200 · 🆕 新词 · 共5349词</span></div>
     </div>
     <div class="vocab-card-container">
       <div class="vocab-card" id="vocabCard" onclick="flipCard()">
         <div class="vocab-card-face vocab-card-front">
-          <div class="vocab-word" id="vcWord">out</div>
-          <div class="vocab-phonetic" id="vcPhonetic">/aut/</div>
+          <div class="vocab-word" id="vcWord">your</div>
+          <div class="vocab-phonetic" id="vcPhonetic">/juә/</div>
           <button class="vocab-speak-btn" onclick="event.stopPropagation();speakWord()">🔊</button>
           <div class="vocab-mastery" id="vcMastery"><div class="mastery-dot"></div><div class="mastery-dot"></div><div class="mastery-dot"></div><div class="mastery-dot"></div><div class="mastery-dot"></div></div>
         </div>
         <div class="vocab-card-face vocab-card-back">
-          <div class="vocab-trans" id="vcTrans">a. 外面的, 熄灭的, 结束的\nadv. 在外, 熄灭, 出现\nprep. 出自, 离去, 向</div>
-          <div class="vocab-def" id="vcDef">n. (baseball) a failure by a batter or runner to reach a base safely in baseball v. reveal (something) about somebody's identity or lifestyle v. be made known; be disclosed or revealed a. not allowed </div>
+          <div class="vocab-trans" id="vcTrans">pron. 你的, 你们的</div>
+          <div class="vocab-def" id="vcDef">pron. &amp; a. The form of the possessive case of the personal  pronoun you.</div>
           <div style="font-size:11px;color:var(--text-muted);margin-top:12px">点击卡片翻回</div>
         </div>
       </div>
@@ -4373,58 +4373,47 @@ function speakWord(){
   speakText(currentVocabCard.word);
 }
 // === Speech Engine Pre-warm ===
-// Pre-load voices & warm up the engine to eliminate first-utterance lag
+// Pre-load voices to eliminate first-utterance lag
 var _cachedVoice=null;
-var _speechReady=false;
 function initSpeech(){
   if(!('speechSynthesis' in window)) return;
   function pickVoice(){
     var voices=speechSynthesis.getVoices();
     if(!voices||!voices.length) return;
-    // Prefer high-quality en-US voices
     _cachedVoice=voices.find(function(v){return v.lang==='en-US'&&/Google|Samantha|Daniel|Karen|Microsoft/i.test(v.name);})
               ||voices.find(function(v){return v.lang==='en-US';})
               ||voices.find(function(v){return v.lang&&v.lang.indexOf('en')===0;})
               ||null;
-    _speechReady=true;
   }
   pickVoice();
   speechSynthesis.onvoiceschanged=pickVoice;
 }
 initSpeech();
-// Warm up the engine silently on first user interaction (browsers block audio before interaction)
-var _warmedUp=false;
-function warmupSpeech(){
-  if(_warmedUp||!('speechSynthesis' in window)) return;
-  _warmedUp=true;
-  try{
-    var u=new SpeechSynthesisUtterance('');
-    u.volume=0;
-    speechSynthesis.speak(u);
-  }catch(e){}
-}
-document.addEventListener('click',warmupSpeech,{once:true,passive:true});
-document.addEventListener('touchstart',warmupSpeech,{once:true,passive:true});
 
+// === Robust speech queue: cancel is async in Chrome, must wait before speak ===
+var _speakTimer=null;
 function speakText(text){
-  // Method 1: Try Web Speech API first
-  if('speechSynthesis' in window && window.speechSynthesis){
+  // Clear any pending speak from the queue
+  if(_speakTimer){clearTimeout(_speakTimer);_speakTimer=null;}
+  if(!('speechSynthesis' in window)||!window.speechSynthesis){
+    playAudioFallback(text);
+    return;
+  }
+  // Force-cancel any in-flight utterance
+  try{speechSynthesis.cancel();}catch(e){}
+  // Wait for cancel to fully take effect before queuing the new utterance
+  _speakTimer=setTimeout(function(){
+    _speakTimer=null;
     try{
       var u=new SpeechSynthesisUtterance(text);
       u.lang='en-US';u.rate=0.85;
       if(_cachedVoice) u.voice=_cachedVoice;
-      u.onerror=function(){
-        playAudioFallback(text);
-      };
-      speechSynthesis.cancel();
+      u.onerror=function(){playAudioFallback(text);};
       speechSynthesis.speak(u);
-      return;
     }catch(e){
-      // fall through to audio method
+      playAudioFallback(text);
     }
-  }
-  // Method 2: Fallback - use online dictionary audio
-  playAudioFallback(text);
+  },60);
 }
 function playAudioFallback(word){
   // Use Youdao Dictionary TTS (works over HTTPS)
