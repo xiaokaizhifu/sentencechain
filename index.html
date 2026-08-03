@@ -211,6 +211,9 @@ input,select,textarea{font-family:var(--font);outline:none}
 .grammar-card h3{font-size:16px;font-weight:600;margin-bottom:6px}
 .grammar-card p{font-size:13px;color:var(--text-light);margin-bottom:14px}
 .coming-soon-badge{display:inline-block;padding:4px 12px;border-radius:20px;font-size:11px;background:var(--warning-bg);color:var(--warning);font-weight:600}
+.gc-play-btn{padding:8px 20px;font-size:13px;border-radius:var(--radius-sm)}
+.gc-video-wrap{margin-top:14px;animation:gcFadeIn .3s ease}
+@keyframes gcFadeIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 
 /* ===== Reading ===== */
 .reading-meta{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:16px;font-size:13px;color:var(--text-light)}
@@ -345,7 +348,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   try {
     const client = await import('/@vite/client');
     const hmr = client.createHotContext('hmr-handler/fake.js');
-    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785681008914']);
+    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785724123240']);
   } catch {}
 })();</script><style>.buttonsCard-bTXa5j {
   padding: var(--spacer-4);
@@ -702,7 +705,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   try {
     const client = await import('/@vite/client');
     const hmr = client.createHotContext('hmr-handler/fake.js');
-    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785681008925']);
+    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785724123253']);
   } catch {}
 })();</script><style>.buttonsCard-bTXa5j {
   padding: var(--spacer-4);
@@ -2872,7 +2875,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
     </div>
     
     <div class="nav-section-label">记单词</div>
-    <div class="nav-item active" data-page="vocab" onclick="navigateTo('vocab')">
+    <div class="nav-item" data-page="vocab" onclick="navigateTo('vocab')">
       <span class="nav-icon">📖</span><span>刷单词</span>
     </div>
     <div class="nav-item" data-page="wordbook" onclick="navigateTo('wordbook')">
@@ -2897,7 +2900,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
     <div class="nav-item" data-page="practice" onclick="navigateTo('practice')">
       <span class="nav-icon">✏️</span><span>练习测验</span>
     </div>
-    <div class="nav-item" data-page="grammar" onclick="navigateTo('grammar')">
+    <div class="nav-item active" data-page="grammar" onclick="navigateTo('grammar')">
       <span class="nav-icon">🎬</span><span>语法视频</span>
     </div>
     <div class="nav-item" data-page="wrong" onclick="navigateTo('wrong')">
@@ -2938,24 +2941,24 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   </div>
 
   <!-- ========== 2. Vocab ========== -->
-  <div class="page active" id="page-vocab">
+  <div class="page" id="page-vocab">
     <h2 class="page-title">词汇学习</h2>
     <div class="module-tip"><span class="tip-icon">💡</span><div>单词按<strong>考频从高到低</strong>出现，高频词优先记住提分最快。点「模糊」或「不认识」的词会自动进入<strong>生词本</strong>，点「太简单」则永久跳过。可点「上一个」回退修改误操作。</div></div>
     <div class="vocab-progress">
-      <div class="progress-bar-wrap"><div class="progress-bar" id="vocabProgressBar" style="width: 9%;"></div></div>
-      <div class="progress-text"><span id="vocabProgressText">108 / 1200 · 🔄 复习 · 共5349词</span></div>
+      <div class="progress-bar-wrap"><div class="progress-bar" id="vocabProgressBar" style="width:0%"></div></div>
+      <div class="progress-text"><span id="vocabProgressText">0 / 50</span></div>
     </div>
     <div class="vocab-card-container">
       <div class="vocab-card" id="vocabCard" onclick="flipCard()">
         <div class="vocab-card-face vocab-card-front">
-          <div class="vocab-word" id="vcWord">take</div>
-          <div class="vocab-phonetic" id="vcPhonetic">/teik/</div>
+          <div class="vocab-word" id="vcWord">--</div>
+          <div class="vocab-phonetic" id="vcPhonetic">--</div>
           <button class="vocab-speak-btn" onclick="event.stopPropagation();speakWord()">🔊</button>
-          <div class="vocab-mastery" id="vcMastery"><div class="mastery-dot"></div><div class="mastery-dot"></div><div class="mastery-dot"></div><div class="mastery-dot"></div><div class="mastery-dot"></div></div>
+          <div class="vocab-mastery" id="vcMastery"></div>
         </div>
         <div class="vocab-card-face vocab-card-back">
-          <div class="vocab-trans" id="vcTrans">vt. 拿, 取, 抓, 带领, 获得, 就座, 接受, 吃, 吸引, 采取, 乘, 需要, 花费\nvi. 吃掉对方棋子, 抓住, 起作用, 依法获得财产\nn. 拿, 取, 收成, 奏效</div>
-          <div class="vocab-def" id="vcDef">n. the act of photographing a scene or part of a scene without interruption v. carry out v. require (time or space) v. get into one's hands, take physically</div>
+          <div class="vocab-trans" id="vcTrans">--</div>
+          <div class="vocab-def" id="vcDef">--</div>
           <div style="font-size:11px;color:var(--text-muted);margin-top:12px">点击卡片翻回</div>
         </div>
       </div>
@@ -2967,7 +2970,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
       <button class="vocab-btn green" onclick="markVocab('know')">认识</button>
     </div>
     <div style="text-align:center;margin-top:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-      <button class="btn-outline" style="font-size: 13px; padding: 6px 14px; opacity: 0.4;" id="vocabPrevBtn" onclick="prevVocab()">← 上一个</button>
+      <button class="btn-outline" style="font-size:13px;padding:6px 14px" id="vocabPrevBtn" onclick="prevVocab()">← 上一个</button>
       <button class="btn-outline" style="font-size:13px;padding:6px 14px;border-color:var(--success);color:var(--success)" onclick="markVocab('too-easy')">✓ 太简单了</button>
       <button class="btn-outline" id="vocabRootBtn" onclick="showVocabWordRoot()" style="font-size:13px">🔍 词根词缀</button>
     </div>
@@ -3152,9 +3155,9 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   </div>
 
   <!-- ========== 7. Grammar ========== -->
-  <div class="page" id="page-grammar">
+  <div class="page active" id="page-grammar">
     <h2 class="page-title">语法视频</h2>
-    <div class="grammar-grid" id="grammarGrid"></div>
+    <div class="grammar-grid" id="grammarGrid"><div class="grammar-card" id="gc-import"><div class="gc-icon">📝</div><h3>基础导入</h3><p>英语语法体系概述，为后续学习打基础</p><button class="btn-primary gc-play-btn" onclick="playGrammarVideo('import')">▶ 播放视频</button></div><div class="grammar-card" id="gc-compound"><div class="gc-icon">⛓</div><h3>并列句</h3><p>and, but, or, so等并列连词连接的句子</p><button class="btn-primary gc-play-btn" onclick="playGrammarVideo('compound')">▶ 播放视频</button></div><div class="grammar-card" id="gc-adverbial"><div class="gc-icon">🔗</div><h3>状语从句</h3><p>because, although, when, if等引导的从句</p><span class="coming-soon-badge">即将上线</span></div><div class="grammar-card" id="gc-attributive"><div class="gc-icon">🔗</div><h3>定语从句</h3><p>who, which, that, where等关系词引导的从句</p><span class="coming-soon-badge">即将上线</span></div><div class="grammar-card" id="gc-noun-clause"><div class="gc-icon">🔗</div><h3>名词性从句</h3><p>that, whether, what等引导的宾语/主语/表语从句</p><span class="coming-soon-badge">即将上线</span></div><div class="grammar-card" id="gc-tape-escape"><div class="gc-icon">🌿</div><h3>胶带的脱离</h3><p>非谓语动词与复合结构，脱离简单句的胶带粘合</p><span class="coming-soon-badge">即将上线</span></div><div class="grammar-card" id="gc-mood"><div class="gc-icon">💡</div><h3>语气</h3><p>虚拟语气与强调句型的用法</p><span class="coming-soon-badge">即将上线</span></div><div class="grammar-card" id="gc-long-sentence"><div class="gc-icon">📏</div><h3>长难句分析</h3><p>高考长难句的拆分与理解技巧</p><span class="coming-soon-badge">即将上线</span></div></div>
   </div>
 
   <!-- ========== 8. Reading ========== -->
@@ -3213,7 +3216,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
           <div class="setting-label"><h4>每日新词数量</h4><p>设置每天要学习的新词数量（复习词自动按比例计算）</p></div>
           <div class="setting-control">
             <input type="range" id="dailyWordCount" min="10" max="300" value="20" step="5" oninput="updateRangeVal('dailyWordCount')">
-            <span class="range-val" id="dailyWordCountVal">300</span>
+            <span class="range-val" id="dailyWordCountVal">20</span>
           </div>
         </div>
         <div class="setting-item">
@@ -3230,20 +3233,20 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
         <div class="setting-item">
           <div class="setting-label"><h4>每日学习任务预估</h4><p>根据当前设置计算的完成计划</p></div>
           <div class="setting-control" style="text-align:right">
-            <div id="dailyTaskSummary" style="font-size:13px;color:var(--text-light);line-height:1.8">每日总量：1200词（新词300 + 复习900）<br>剩余词数：5293 / 5349<br>预计完成：2026年8月20日（约18天）</div>
+            <div id="dailyTaskSummary" style="font-size:13px;color:var(--text-light);line-height:1.8"></div>
           </div>
         </div>
         <div class="setting-item">
           <div class="setting-label"><h4>每日练习题数</h4><p>设置每天要完成的练习题目数</p></div>
           <div class="setting-control">
             <input type="range" id="dailyPracticeCount" min="5" max="30" value="10" oninput="updateRangeVal('dailyPracticeCount')">
-            <span class="range-val" id="dailyPracticeCountVal">30</span>
+            <span class="range-val" id="dailyPracticeCountVal">10</span>
           </div>
         </div>
         <div class="setting-item">
           <div class="setting-label"><h4>自动发音</h4><p>学习词汇时自动播放发音</p></div>
           <div class="setting-control">
-            <div class="toggle on" id="autoSpeakToggle" onclick="toggleAutoSpeak()"></div>
+            <div class="toggle" id="autoSpeakToggle" onclick="toggleAutoSpeak()"></div>
           </div>
         </div>
       </div>
@@ -3254,7 +3257,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
           <input type="text" id="apiBaseInput" placeholder="https://api.sentencechain.com" style="flex:1;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:14px">
           <button class="btn-primary" onclick="saveApiBase()">保存</button>
         </div>
-        <p id="apiStatus" style="font-size:12px;color:var(--text-muted);margin-top:6px">当前：api.sentencechain.com</p>
+        <p id="apiStatus" style="font-size:12px;color:var(--text-muted);margin-top:6px"></p>
       </div>
       <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border)">
         <h4 style="margin-bottom:12px">使用帮助</h4>
@@ -3418,12 +3421,14 @@ const translationExercises = [
 ];
 
 const grammarCategories = [
-  {id:"import",name:"基础导入",icon:"📝",desc:"英语语法体系概述，为后续学习打基础"},
-  {id:"clauses",name:"三大从句",icon:"🔗",desc:"定语从句、名词性从句、状语从句详解"},
-  {id:"subjunctive",name:"虚拟与强调",icon:"💡",desc:"虚拟语气和强调句型的用法"},
-  {id:"inversion",name:"倒装句",icon:"🔄",desc:"完全倒装与部分倒装的规则和应用"},
-  {id:"non-finite",name:"非谓语动词",icon:"🌿",desc:"动名词、不定式、分词的用法辨析"},
-  {id:"long-sentence",name:"长难句分析",icon:"📏",desc:"高考长难句的拆分与理解技巧"}
+  {id:"import",name:"基础导入",icon:"📝",desc:"英语语法体系概述，为后续学习打基础",video:"videos/01-import.mp4"},
+  {id:"compound",name:"并列句",icon:"⛓",desc:"and, but, or, so等并列连词连接的句子",video:"videos/02-compound.mp4"},
+  {id:"adverbial",name:"状语从句",icon:"🔗",desc:"because, although, when, if等引导的从句",video:""},
+  {id:"attributive",name:"定语从句",icon:"🔗",desc:"who, which, that, where等关系词引导的从句",video:""},
+  {id:"noun-clause",name:"名词性从句",icon:"🔗",desc:"that, whether, what等引导的宾语/主语/表语从句",video:""},
+  {id:"tape-escape",name:"胶带的脱离",icon:"🌿",desc:"非谓语动词与复合结构，脱离简单句的胶带粘合",video:""},
+  {id:"mood",name:"语气",icon:"💡",desc:"虚拟语气与强调句型的用法",video:""},
+  {id:"long-sentence",name:"长难句分析",icon:"📏",desc:"高考长难句的拆分与理解技巧",video:""}
 ];
 
 const aiArticleTypes = [
@@ -4489,15 +4494,38 @@ function nextTransQuestion(){
    ======================================== */
 function renderGrammar(){
   var html='';
-  grammarCategories.forEach(function(g){
-    html+='<div class="grammar-card">';
+  grammarCategories.forEach(function(g,idx){
+    html+='<div class="grammar-card" id="gc-'+g.id+'">';
     html+='<div class="gc-icon">'+g.icon+'</div>';
     html+='<h3>'+g.name+'</h3>';
     html+='<p>'+g.desc+'</p>';
-    html+='<span class="coming-soon-badge">即将上线</span>';
+    if(g.video){
+      html+='<button class="btn-primary gc-play-btn" onclick="playGrammarVideo(\''+g.id+'\')">▶ 播放视频</button>';
+    }else{
+      html+='<span class="coming-soon-badge">即将上线</span>';
+    }
     html+='</div>';
   });
   document.getElementById('grammarGrid').innerHTML=html;
+}
+
+function playGrammarVideo(id){
+  var g=grammarCategories.find(function(x){return x.id===id});
+  if(!g||!g.video) return;
+  var card=document.getElementById('gc-'+id);
+  if(!card) return;
+  // If video already playing, toggle off
+  var existing=card.querySelector('.gc-video-wrap');
+  if(existing){
+    existing.remove();
+    return;
+  }
+  var wrap=document.createElement('div');
+  wrap.className='gc-video-wrap';
+  wrap.innerHTML='<video src="'+g.video+'" controls autoplay style="width:100%;border-radius:8px;margin-top:12px"></video>';
+  card.appendChild(wrap);
+  var video=wrap.querySelector('video');
+  video.play().catch(function(){});
 }
 
 /* ========================================
