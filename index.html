@@ -1691,7 +1691,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   try {
     const client = await import('/@vite/client');
     const hmr = client.createHotContext('hmr-handler/fake.js');
-    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785733346386']);
+    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785734220136']);
   } catch {}
 })();</script><style>.buttonsCard-bTXa5j {
   padding: var(--spacer-4);
@@ -2029,7 +2029,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   try {
     const client = await import('/@vite/client');
     const hmr = client.createHotContext('hmr-handler/fake.js');
-    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785733346400']);
+    hmr.on('vite:afterUpdate', window['__ICUBE_WEBVIEW_HMR_CALLBACK_1785734220148']);
   } catch {}
 })();</script><style>.buttonsCard-bTXa5j {
   padding: var(--spacer-4);
@@ -3566,7 +3566,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
     </div>
     
     <div class="nav-section-label">记单词</div>
-    <div class="nav-item" data-page="vocab" onclick="navigateTo('vocab')">
+    <div class="nav-item active" data-page="vocab" onclick="navigateTo('vocab')">
       <span class="nav-icon">📖</span><span>刷单词</span>
     </div>
     <div class="nav-item" data-page="wordbook" onclick="navigateTo('wordbook')">
@@ -3591,7 +3591,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
     <div class="nav-item" data-page="practice" onclick="navigateTo('practice')">
       <span class="nav-icon">✏️</span><span>练习测验</span>
     </div>
-    <div class="nav-item active" data-page="grammar" onclick="navigateTo('grammar')">
+    <div class="nav-item" data-page="grammar" onclick="navigateTo('grammar')">
       <span class="nav-icon">🎬</span><span>语法视频</span>
     </div>
     <div class="nav-item" data-page="wrong" onclick="navigateTo('wrong')">
@@ -3632,24 +3632,24 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   </div>
 
   <!-- ========== 2. Vocab ========== -->
-  <div class="page" id="page-vocab">
+  <div class="page active" id="page-vocab">
     <h2 class="page-title">词汇学习</h2>
     <div class="module-tip"><span class="tip-icon">💡</span><div>单词按<strong>考频从高到低</strong>出现，高频词优先记住提分最快。点「模糊」或「不认识」的词会自动进入<strong>生词本</strong>，点「太简单」则永久跳过。可点「上一个」回退修改误操作。</div></div>
     <div class="vocab-progress">
-      <div class="progress-bar-wrap"><div class="progress-bar" id="vocabProgressBar" style="width:0%"></div></div>
-      <div class="progress-text"><span id="vocabProgressText">0 / 50</span></div>
+      <div class="progress-bar-wrap"><div class="progress-bar" id="vocabProgressBar" style="width: 9%;"></div></div>
+      <div class="progress-text"><span id="vocabProgressText">109 / 1200 · 🆕 新词 · 共5349词</span></div>
     </div>
     <div class="vocab-card-container">
       <div class="vocab-card" id="vocabCard" onclick="flipCard()">
         <div class="vocab-card-face vocab-card-front">
-          <div class="vocab-word" id="vcWord">--</div>
-          <div class="vocab-phonetic" id="vcPhonetic">--</div>
+          <div class="vocab-word" id="vcWord">out</div>
+          <div class="vocab-phonetic" id="vcPhonetic">/aut/</div>
           <button class="vocab-speak-btn" onclick="event.stopPropagation();speakWord()">🔊</button>
-          <div class="vocab-mastery" id="vcMastery"></div>
+          <div class="vocab-mastery" id="vcMastery"><div class="mastery-dot"></div><div class="mastery-dot"></div><div class="mastery-dot"></div><div class="mastery-dot"></div><div class="mastery-dot"></div></div>
         </div>
         <div class="vocab-card-face vocab-card-back">
-          <div class="vocab-trans" id="vcTrans">--</div>
-          <div class="vocab-def" id="vcDef">--</div>
+          <div class="vocab-trans" id="vcTrans">a. 外面的, 熄灭的, 结束的\nadv. 在外, 熄灭, 出现\nprep. 出自, 离去, 向</div>
+          <div class="vocab-def" id="vcDef">n. (baseball) a failure by a batter or runner to reach a base safely in baseball v. reveal (something) about somebody's identity or lifestyle v. be made known; be disclosed or revealed a. not allowed </div>
           <div style="font-size:11px;color:var(--text-muted);margin-top:12px">点击卡片翻回</div>
         </div>
       </div>
@@ -3661,7 +3661,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
       <button class="vocab-btn green" onclick="markVocab('know')">认识</button>
     </div>
     <div style="text-align:center;margin-top:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
-      <button class="btn-outline" style="font-size:13px;padding:6px 14px" id="vocabPrevBtn" onclick="prevVocab()">← 上一个</button>
+      <button class="btn-outline" style="font-size: 13px; padding: 6px 14px; opacity: 0.4;" id="vocabPrevBtn" onclick="prevVocab()">← 上一个</button>
       <button class="btn-outline" style="font-size:13px;padding:6px 14px;border-color:var(--success);color:var(--success)" onclick="markVocab('too-easy')">✓ 太简单了</button>
       <button class="btn-outline" id="vocabRootBtn" onclick="showVocabWordRoot()" style="font-size:13px">🔍 词根词缀</button>
     </div>
@@ -3846,7 +3846,7 @@ input[type="range"]::-webkit-slider-thumb{-webkit-appearance:none;width:20px;hei
   </div>
 
   <!-- ========== 7. Grammar ========== -->
-  <div class="page active" id="page-grammar">
+  <div class="page" id="page-grammar">
     <h2 class="page-title">语法视频</h2>
     <div class="grammar-grid" id="grammarGrid"><div class="grammar-card" id="gc-import"><div class="gc-icon">📝</div><h3>基础导入</h3><p>英语语法体系概述，为后续学习打基础</p><button class="btn-primary gc-play-btn" onclick="playGrammarVideo('import')">▶ 播放视频</button></div><div class="grammar-card" id="gc-compound"><div class="gc-icon">⛓</div><h3>并列句</h3><p>and, but, or, so等并列连词连接的句子</p><button class="btn-primary gc-play-btn" onclick="playGrammarVideo('compound')">▶ 播放视频</button></div><div class="grammar-card" id="gc-adverbial"><div class="gc-icon">🔗</div><h3>状语从句</h3><p>because, although, when, if等引导的从句</p><span class="coming-soon-badge">即将上线</span></div><div class="grammar-card" id="gc-attributive"><div class="gc-icon">🔗</div><h3>定语从句</h3><p>who, which, that, where等关系词引导的从句</p><span class="coming-soon-badge">即将上线</span></div><div class="grammar-card" id="gc-noun-clause"><div class="gc-icon">🔗</div><h3>名词性从句</h3><p>that, whether, what等引导的宾语/主语/表语从句</p><span class="coming-soon-badge">即将上线</span></div><div class="grammar-card" id="gc-tape-escape"><div class="gc-icon">🌿</div><h3>胶带的脱离</h3><p>非谓语动词与复合结构，脱离简单句的胶带粘合</p><span class="coming-soon-badge">即将上线</span></div><div class="grammar-card" id="gc-mood"><div class="gc-icon">💡</div><h3>语气</h3><p>虚拟语气与强调句型的用法</p><span class="coming-soon-badge">即将上线</span></div><div class="grammar-card" id="gc-long-sentence"><div class="gc-icon">📏</div><h3>长难句分析</h3><p>高考长难句的拆分与理解技巧</p><span class="coming-soon-badge">即将上线</span></div></div>
   </div>
@@ -4363,7 +4363,7 @@ function renderVocab(){
   // clear root display
   var rd=document.getElementById('vocabRootDisplay');
   if(rd) rd.innerHTML='';
-  if(state.autoSpeak) setTimeout(speakWord,300);
+  if(state.autoSpeak) setTimeout(speakWord,80);
 }
 function flipCard(){
   document.getElementById('vocabCard').classList.toggle('flipped');
@@ -4372,14 +4372,48 @@ function speakWord(){
   if(!currentVocabCard) return;
   speakText(currentVocabCard.word);
 }
+// === Speech Engine Pre-warm ===
+// Pre-load voices & warm up the engine to eliminate first-utterance lag
+var _cachedVoice=null;
+var _speechReady=false;
+function initSpeech(){
+  if(!('speechSynthesis' in window)) return;
+  function pickVoice(){
+    var voices=speechSynthesis.getVoices();
+    if(!voices||!voices.length) return;
+    // Prefer high-quality en-US voices
+    _cachedVoice=voices.find(function(v){return v.lang==='en-US'&&/Google|Samantha|Daniel|Karen|Microsoft/i.test(v.name);})
+              ||voices.find(function(v){return v.lang==='en-US';})
+              ||voices.find(function(v){return v.lang&&v.lang.indexOf('en')===0;})
+              ||null;
+    _speechReady=true;
+  }
+  pickVoice();
+  speechSynthesis.onvoiceschanged=pickVoice;
+}
+initSpeech();
+// Warm up the engine silently on first user interaction (browsers block audio before interaction)
+var _warmedUp=false;
+function warmupSpeech(){
+  if(_warmedUp||!('speechSynthesis' in window)) return;
+  _warmedUp=true;
+  try{
+    var u=new SpeechSynthesisUtterance('');
+    u.volume=0;
+    speechSynthesis.speak(u);
+  }catch(e){}
+}
+document.addEventListener('click',warmupSpeech,{once:true,passive:true});
+document.addEventListener('touchstart',warmupSpeech,{once:true,passive:true});
+
 function speakText(text){
   // Method 1: Try Web Speech API first
   if('speechSynthesis' in window && window.speechSynthesis){
     try{
       var u=new SpeechSynthesisUtterance(text);
       u.lang='en-US';u.rate=0.85;
+      if(_cachedVoice) u.voice=_cachedVoice;
       u.onerror=function(){
-        // Fallback to audio method on error
         playAudioFallback(text);
       };
       speechSynthesis.cancel();
